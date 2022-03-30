@@ -1,6 +1,6 @@
 # Installations
-npm install mobx
-$ npm install react-router-dom@6
+npm install mobx \
+npm install react-router-dom@6
 
 # Getting Started with Create React App
 
