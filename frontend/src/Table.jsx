@@ -148,31 +148,31 @@ const Table = () => {
       <h2>Add a Contact</h2>
     
       <form onSubmit={handleAddFormSubmit}>         
-        <input                                      // all inputs must be required?
+        <input                                      // all inputs must be required
           type="text"
           name="entryId"
-
+          required="true"
           placeholder="Enter entry ID"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="personName"
-          
+          required="true"
           placeholder="Enter name"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="location"
-          
+          required="true"
           placeholder="Enter location"
           onChange={handleAddFormChange}
         />
         <input
           type="date"
           name="date"
-          required="required"
+          required="true"
           placeholder="date"
           onChange={handleAddFormChange}
         />
