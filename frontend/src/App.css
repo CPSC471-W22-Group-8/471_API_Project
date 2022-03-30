@@ -11,7 +11,7 @@ body, html, #root, .app, .container {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #282c34;
+  background-color: #274a77;
 }
 
 .loginForm {
