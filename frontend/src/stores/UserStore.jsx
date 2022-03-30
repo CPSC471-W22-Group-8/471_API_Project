@@ -6,7 +6,7 @@ class UserStore {
             loading: true,
             isLoggedIn: false,              // determines if user is logged in
             username: ''
-        }) //contains property for stores
+        }) // contains property for stores
     }
 }
 

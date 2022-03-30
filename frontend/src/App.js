@@ -77,7 +77,7 @@ class App extends React.Component {
       return (
         <div className='app'>
           <div className='container'> 
-            Loading ...       ....
+            Loading ...       
           </div>
         </div>
       );
