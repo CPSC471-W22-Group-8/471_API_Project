@@ -11,9 +11,9 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter name"
-          name="entryId"
-          value={editFormData.entryId}
+          placeholder="Enter group name"
+          name="groupName"
+          value={editFormData.groupName}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -21,9 +21,9 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter name"
-          name="personName"
-          value={editFormData.personName}
+          placeholder="Enter group owner"
+          name="groupOwner"
+          value={editFormData.groupOwner}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -31,19 +31,9 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter location"
-          name="location"
-          value={editFormData.location}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
-        <input
-          type="date"
-          required="required"
-          placeholder="Enter date"
-          name="date"
-          value={editFormData.date}
+          placeholder="Enter user"
+          name="user"
+          value={editFormData.user}
           onChange={handleEditFormChange}
         ></input>
       </td>

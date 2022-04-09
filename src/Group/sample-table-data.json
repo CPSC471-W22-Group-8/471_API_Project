@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "groupName": "Level Up",
+      "groupOwner": "Bob",
+      "user": "Matt"
+    },
+    {
+      "id": 2,
+      "groupName": "Fly Fishers",
+      "groupOwner": "Alice",
+      "user": "Josh"
+    },
+    
+    {
+      "id": 4,
+      "groupName": "Catchers",
+      "groupOwner": "Fong",
+      "user": "Carl"
+    }
+    
+  ]

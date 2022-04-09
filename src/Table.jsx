@@ -12,6 +12,7 @@ const Table = () => {
     personName: "",
     location: "",
     date: "",
+    something: ""
   });
 
   const [editFormData, setEditFormData] = useState({
@@ -19,6 +20,7 @@ const Table = () => {
     personName: "",
     location: "",
     date: "",
+    something: ""
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -56,6 +58,8 @@ const Table = () => {
       personName: addFormData.personName,
       location: addFormData.location,
       date: addFormData.date,
+      something: addFormData.something,
+      
     };
 
     const newContacts = [...contacts, newContact];
@@ -71,6 +75,7 @@ const Table = () => {
       personName: editFormData.personName,
       location: editFormData.location,
       date: editFormData.date,
+      something: addFormData.something,
     };
 
     const newContacts = [...contacts];
@@ -92,6 +97,7 @@ const Table = () => {
       personName: contact.personName,
       location: contact.location,
       date: contact.date,
+      something: contact.something,
     };
 
     setEditFormData(formValues);
@@ -113,14 +119,14 @@ const Table = () => {
 
   return (
     <div className="table-container">
+      <h1>Editable Location Profiles</h1>
       <form onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
             <tr>
-              <th>Entry ID</th>
               <th>Name</th>
-              <th>Location</th>
-              <th>Date</th>  
+              <th>Admin ID</th>
+              <th>Regulations</th>  
             </tr>
           </thead>
           <tbody>
@@ -145,37 +151,44 @@ const Table = () => {
         </table>
       </form>
 
-      <h2>Add a Contact</h2>
+      <h2>Add a entry</h2>
     
       <form onSubmit={handleAddFormSubmit}>         
         <input                                      // all inputs must be required
           type="text"
           name="entryId"
           required="true"
-          placeholder="Enter entry ID"
+          placeholder="Enter fish size"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="personName"
           required="true"
-          placeholder="Enter name"
+          placeholder="Enter fish type"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="location"
           required="true"
-          placeholder="Enter location"
+          placeholder="Enter weight"
           onChange={handleAddFormChange}
         />
-        <input
+        {/* <input
           type="date"
           name="date"
           required="true"
           placeholder="date"
           onChange={handleAddFormChange}
-        />
+        /> */}
+        {/* <input
+          type="text"
+          name="something"
+          required="true"
+          placeholder="Enter fly type"
+          onChange={handleAddFormChange}
+        /> */}
         <button type="submit">Add</button>
       </form>
     </div>

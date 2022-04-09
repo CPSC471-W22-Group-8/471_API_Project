@@ -3,10 +3,10 @@ import React from "react";
 const ViewTable = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
-      <td>{contact.entryId}</td>
+      <td>{contact.adminID}</td>
       <td>{contact.personName}</td>
-      <td>{contact.location}</td>
-      <td>{contact.date}</td>
+      <td>{contact.regulations}</td>
+      
       <td>
         <button
           type="button"
