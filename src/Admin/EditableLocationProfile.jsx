@@ -9,18 +9,22 @@ const EditableLocationProfile = () => {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     entryId: "",
-    personName: "",
+    locationName: "",
     adminID: "",
     regulations: "",
-    // date: "",
-    // something: ""
+    fishTypes: "",
+    insectHatches: "",
+    date: ""
   });
 
   const [editFormData, setEditFormData] = useState({
     entryId: "",
-    personName: "",
+    locationName: "",
     adminID: "",
     regulations: "",
+    fishTypes: "",
+    insectHatches: "",
+    date: ""
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -54,11 +58,12 @@ const EditableLocationProfile = () => {
 
     const newContact = {
       id: nanoid(),
-      personName: addFormData.personName,
-      adminID: addFormData.adminID,
+      locationName: addFormData.locationName,
+      adminID: addFormData.adminId,
       regulations: addFormData.regulations,
-    //   date: addFormData.date,
-    //   something: addFormData.something,
+      fishTypes: addFormData.fishTypes,
+      insectHatches: addFormData.insectHatches,
+      date: addFormData.date
       
     };
 
@@ -71,11 +76,12 @@ const EditableLocationProfile = () => {
 
     const editedContact = {
       id: editContactId,
-      personName: editFormData.personName,
-      adminID: editFormData.adminID,
+      locationName: editFormData.locationName,
+      adminID: editFormData.adminId,
       regulations: editFormData.regulations,
-    //   date: editFormData.date,
-    //   something: addFormData.something,
+      fishTypes: editFormData.fishTypes,
+      insectHatches: editFormData.insectHatches,
+      date: editFormData.date
     };
 
     const newContacts = [...contacts];
@@ -93,11 +99,12 @@ const EditableLocationProfile = () => {
     setEditContactId(contact.id);
 
     const formValues = {
-      personName: contact.personName,
-      adminID: contact.adminID,
+      locationName: contact.locationName,
+      adminID: contact.adminId,
       regulations: contact.regulations,
-    //   date: contact.date,
-    //   something: contact.something,
+      fishTypes: contact.fishTypes,
+      insectHatches: contact.insectHatches,
+      date: contact.date
     };
 
     setEditFormData(formValues);
@@ -125,8 +132,11 @@ const EditableLocationProfile = () => {
           <thead>
             <tr>
               <th>Admin ID</th>
-              <th>Name</th>
-              <th>Regulations</th>  
+              <th>Location</th>
+              <th>Regulations</th>
+              <th>Fish Types</th>
+              <th>Insect Hatches</th>
+              <th>Dates</th>  
             </tr>
           </thead>
           <tbody>
@@ -163,16 +173,37 @@ const EditableLocationProfile = () => {
         />
         <input
           type="text"
-          name="personName"
+          name="locationName"
           required="true"
-          placeholder="Enter Name"
+          placeholder="Enter Location"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="url"
+          name="regulations"
+          required="true"
+          placeholder="Enter regulations"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
-          name="regulations"
+          name="fishTypes"
           required="true"
-          placeholder="Enter regulation"
+          placeholder="Enter fish types"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="insectHatches"
+          required="true"
+          placeholder="Enter insect hatches"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="dates"
+          required="true"
+          placeholder="Enter date range"
           onChange={handleAddFormChange}
         />
         <button type="submit">Add</button>

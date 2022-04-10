@@ -64,7 +64,7 @@ class LoginForm extends React.Component {
       let result = await res.json();
       if (result && result.success) {
         UserStore.isLoggedIn = true;
-        UserStore.username = result.username;
+        UserStore.username = result.username; // go to './admin/adminpage'
       }
 
       else if (result && result.success === false) {

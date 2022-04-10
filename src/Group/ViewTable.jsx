@@ -12,10 +12,10 @@ const ViewTable = ({ contact, handleEditClick, handleDeleteClick }) => {
           type="button"
           onClick={(event) => handleEditClick(event, contact)}
         >
-          Edit
+          Remove user
         </button>
         <button type="button" onClick={() => handleDeleteClick(contact.id)}>
-          Delete
+          Delete Group
         </button>
       </td>
     </tr>

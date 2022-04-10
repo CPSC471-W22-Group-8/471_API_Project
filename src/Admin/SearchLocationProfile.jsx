@@ -5,24 +5,26 @@ import data from "./sample-table-data.json";
 import ViewTable from "./ViewTable";
 import EditTable from "./EditTable";
 
-const Conditions = () => {
+const SearchLocationProfile = () => {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     entryId: "",
-    waterVisibility: "",
-    wind: "",
-    sky: "",
-    temperature: ""
-    // date: "",
-    // something: ""
+    locationName: "",
+    adminID: "",
+    regulations: "",
+    fishTypes: "",
+    insectHatches: "",
+    date: ""
   });
 
   const [editFormData, setEditFormData] = useState({
     entryId: "",
-    waterVisibility: "",
-    wind: "",
-    sky: "",
-    temperature: ""
+    locationName: "",
+    adminID: "",
+    regulations: "",
+    fishTypes: "",
+    insectHatches: "",
+    date: ""
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -56,12 +58,12 @@ const Conditions = () => {
 
     const newContact = {
       id: nanoid(),
-      waterVisibility: addFormData.waterVisibility,
-      wind: addFormData.wind,
-      sky: addFormData.sky,
-      temperature: addFormData.temperature
-    //   date: addFormData.date,
-    //   something: addFormData.something,
+      locationName: addFormData.locationName,
+      adminID: addFormData.adminId,
+      regulations: addFormData.regulations,
+      fishTypes: addFormData.fishTypes,
+      insectHatches: addFormData.insectHatches,
+      date: addFormData.date
       
     };
 
@@ -74,12 +76,12 @@ const Conditions = () => {
 
     const editedContact = {
       id: editContactId,
-      waterVisibility: editFormData.waterVisibility,
-      wind: editFormData.wind,
-      sky: editFormData.sky,
-      temperature: editFormData.temperature
-    //   date: editFormData.date,
-    //   something: addFormData.something,
+      locationName: editFormData.locationName,
+      adminID: editFormData.adminId,
+      regulations: editFormData.regulations,
+      fishTypes: editFormData.fishTypes,
+      insectHatches: editFormData.insectHatches,
+      date: editFormData.date
     };
 
     const newContacts = [...contacts];
@@ -97,12 +99,12 @@ const Conditions = () => {
     setEditContactId(contact.id);
 
     const formValues = {
-      waterVisibility: contact.waterVisibility,
-      wind: contact.wind,
-      sky: contact.sky,
-      temperature: contact.temperature
-    //   date: contact.date,
-    //   something: contact.something,
+      locationName: contact.locationName,
+      adminID: contact.adminId,
+      regulations: contact.regulations,
+      fishTypes: contact.fishTypes,
+      insectHatches: contact.insectHatches,
+      date: contact.date
     };
 
     setEditFormData(formValues);
@@ -124,74 +126,31 @@ const Conditions = () => {
 
   return (
     <div className="table-container">
-      <h1>Conditions</h1>
-      <form onSubmit={handleEditFormSubmit}>
-        <table>
-          <thead>
-            <tr>
-              <th>Water Visibility</th>
-              <th>Wind</th>
-              <th>Sky</th>  
-              <th>Temperature</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.map((contact) => (
-              <Fragment>
-                {editContactId === contact.id ? (
-                  <EditTable
-                    editFormData={editFormData}
-                    handleEditFormChange={handleEditFormChange}
-                    handleCancelClick={handleCancelClick}
-                  />
-                ) : (
-                  <ViewTable
-                    contact={contact}
-                    handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
-                  />
-                )}
-              </Fragment>
-            ))}
-          </tbody>
-        </table>
-      </form>
-
-      <h2>Add Entry</h2>
-    
-      <form onSubmit={handleAddFormSubmit}>         
-        <input                                      // all inputs must be required
+      <h2>Search Location Profiles</h2>
+        <input
           type="text"
-          name="waterVisibility"
+          name="locationName"
           required="true"
-          placeholder="Enter water visibility"
+          placeholder="Enter Location"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
-          name="wind"
+          name="fishTypes"
           required="true"
-          placeholder="Enter wind"
+          placeholder="Enter fish types"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
-          name="sky"
+          name="insectHatches"
           required="true"
-          placeholder="Enter sky"
+          placeholder="Enter insect hatches"
           onChange={handleAddFormChange}
         />
-        <input
-          type="text"
-          name="temperature"
-          required="true"
-          placeholder="Enter temperature"
-          onChange={handleAddFormChange}
-        />
-        <button type="submit">Add</button>
-      </form>
+        <button type="submit">Search</button>
     </div>
   );
 };
 
-export default Conditions;
+export default SearchLocationProfile;

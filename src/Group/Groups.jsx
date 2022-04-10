@@ -1,26 +1,25 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
-import "./Table.css";
+
 import data from "./sample-table-data.json";
 import ViewTable from "./ViewTable";
 import EditTable from "./EditTable";
 
-const Table = () => {
+const Group = () => {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     entryId: "",
-    personName: "",
-    location: "",
-    date: "",
-    something: ""
+    groupName: "",
+    groupOwner: "",
+    user: "",
+
   });
 
   const [editFormData, setEditFormData] = useState({
     entryId: "",
-    personName: "",
-    location: "",
-    date: "",
-    something: ""
+    groupName: "",
+    groupOwner: "",
+    user: "",
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -54,11 +53,11 @@ const Table = () => {
 
     const newContact = {
       id: nanoid(),
-      entryId: addFormData.entryId,
-      personName: addFormData.personName,
-      location: addFormData.location,
-      date: addFormData.date,
-      something: addFormData.something,
+      groupName: addFormData.groupName,
+      groupOwner: addFormData.groupOwner,
+      user: addFormData.user,
+    //   date: addFormData.date,
+    //   something: addFormData.something,
       
     };
 
@@ -71,11 +70,11 @@ const Table = () => {
 
     const editedContact = {
       id: editContactId,
-      entryId: editFormData.entryId,
-      personName: editFormData.personName,
-      location: editFormData.location,
-      date: editFormData.date,
-      something: addFormData.something,
+      groupName: editFormData.groupName,
+      groupOwner: editFormData.groupOwner,
+      user: editFormData.user,
+    //   date: editFormData.date,
+    //   something: addFormData.something,
     };
 
     const newContacts = [...contacts];
@@ -93,11 +92,11 @@ const Table = () => {
     setEditContactId(contact.id);
 
     const formValues = {
-      entryId: contact.entryId,
-      personName: contact.personName,
-      location: contact.location,
-      date: contact.date,
-      something: contact.something,
+      groupName: contact.groupName,
+      groupOwner: contact.groupOwner,
+      user: contact.user,
+    //   date: contact.date,
+    //   something: contact.something,
     };
 
     setEditFormData(formValues);
@@ -119,14 +118,14 @@ const Table = () => {
 
   return (
     <div className="table-container">
-      <h1>Editable Location Profiles</h1>
+      <h1>Groups</h1>
       <form onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Admin ID</th>
-              <th>Regulations</th>  
+              <th>Group Name</th>
+              <th>Group Owner</th>
+              <th>Users</th>  
             </tr>
           </thead>
           <tbody>
@@ -151,48 +150,20 @@ const Table = () => {
         </table>
       </form>
 
-      <h2>Add a entry</h2>
+      <h2>Add User</h2>
     
       <form onSubmit={handleAddFormSubmit}>         
         <input                                      // all inputs must be required
           type="text"
-          name="entryId"
+          name="newUser"
           required="true"
-          placeholder="Enter fish size"
+          placeholder="Enter username"
           onChange={handleAddFormChange}
         />
-        <input
-          type="text"
-          name="personName"
-          required="true"
-          placeholder="Enter fish type"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="location"
-          required="true"
-          placeholder="Enter weight"
-          onChange={handleAddFormChange}
-        />
-        {/* <input
-          type="date"
-          name="date"
-          required="true"
-          placeholder="date"
-          onChange={handleAddFormChange}
-        /> */}
-        {/* <input
-          type="text"
-          name="something"
-          required="true"
-          placeholder="Enter fly type"
-          onChange={handleAddFormChange}
-        /> */}
         <button type="submit">Add</button>
       </form>
     </div>
   );
 };
 
-export default Table;
+export default Group;

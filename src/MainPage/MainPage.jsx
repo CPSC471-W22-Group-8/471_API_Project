@@ -1,10 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Button } from "@material-ui/core";
 
 
 
 
 function MainPage() {
+
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+            let path = '/user/login';
+            navigate(path); 
+    }
+
   return (
     <Box align = 'center' pt={30} >
         <h1>Main Page</h1>
@@ -14,14 +22,16 @@ function MainPage() {
         size='large'
         type='submit'
         variant='contained'
+        onClick={routeChange}
         >
         Admin Login
-    </Button>
+    </Button >
         <Button
         color='secondary'
         size='large'
         type='submit'
         variant='contained'
+        onClick={routeChange}
         >
         User Login
         </Button>

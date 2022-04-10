@@ -1,35 +1,24 @@
 import React from "react";
 import { Box, Button, ButtonGroup } from "@material-ui/core";
 
-function UserPage() {
-  return ( 
+function AdminPage() {
+  return (
     <Box align = 'center' pt={30} >
-        <h1>User Page</h1>
+        <h1>Admin Page</h1>
 
         <ButtonGroup variant="contained" size="large" type = 'submit'>
-            <Button>Create Entry</Button> 
-            <Button>Search/Edit Entries</Button>
-        </ButtonGroup>
-        <h1></h1>
-        <ButtonGroup variant="contained" size="large" type = 'submit'>
-            <Button>Create Group</Button>
-            <Button>View My Groups</Button>
+            <Button>Search Entries</Button>
         </ButtonGroup>
 
         <h1></h1>
         <ButtonGroup variant="contained" size="large" type = 'submit'>
-            <Button>Search Location Profiles</Button>
-        </ButtonGroup>
-
-        <h1></h1>
-        <ButtonGroup variant="contained" size="large" type = 'submit'>
-            <Button>Get Statistics</Button>
+            <Button>Create Location Profile</Button>
+            <Button>Search/Edit Location Profiles</Button>
+            
         </ButtonGroup>
         
     </Box>
-// go to '/user/entry'
-// go to '/user/group/'
-// go to /locationprofile/
+
 
 
     
@@ -73,4 +62,4 @@ function UserPage() {
 
 
 
-export default UserPage;
+export default AdminPage;

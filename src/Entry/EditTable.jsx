@@ -11,9 +11,9 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter name"
-          name="entryId"
-          value={editFormData.entryId}
+          placeholder="Enter temperature"
+          name="temperature"
+          value={editFormData.temperature}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -21,9 +21,9 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter name"
-          name="personName"
-          value={editFormData.personName}
+          placeholder="Enter wind"
+          name="wind"
+          value={editFormData.wind}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -31,19 +31,9 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter location"
-          name="location"
-          value={editFormData.location}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
-        <input
-          type="date"
-          required="required"
-          placeholder="Enter date"
-          name="date"
-          value={editFormData.date}
+          placeholder="Enter sky"
+          name="sky"
+          value={editFormData.sky}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -51,9 +41,19 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="something"
-          name="something"
-          value={editFormData.date}
+          placeholder="Enter water visibility"
+          name="waterVisibility"
+          value={editFormData.waterVisibility}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          placeholder="Enter water flow"
+          name="waterFlow"
+          value={editFormData.waterFlow}
           onChange={handleEditFormChange}
         ></input>
       </td>

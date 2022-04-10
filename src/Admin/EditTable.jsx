@@ -21,9 +21,9 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter Name"
-          name="personName"
-          value={editFormData.personName}
+          placeholder="Enter Location"
+          name="locationName"
+          value={editFormData.locationName}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -31,9 +31,39 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter Regulation"
+          placeholder="Enter Regulations"
           name="regulations"
           value={editFormData.regulations}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          placeholder="Enter Fish Types"
+          name="fishTypes"
+          value={editFormData.FishTypes}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          placeholder="Enter Insect Hatches"
+          name="insectHatches"
+          value={editFormData.insectHtaches}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          placeholder="Enter Date Range"
+          name="dates"
+          value={editFormData.dates}
           onChange={handleEditFormChange}
         ></input>
       </td>

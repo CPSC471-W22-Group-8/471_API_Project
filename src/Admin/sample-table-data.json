@@ -2,26 +2,38 @@
     {
       "id": 1,
       "adminID": "543535353",
-      "personName": "Bob",
-      "regulations": "443535"
+      "locationName": "Bob",
+      "regulations": "443535",
+      "fishTypes": "Trout",
+      "insectHatches": "Caddis",
+      "dates": "May to Sept"
     },
     {
-      "id": 2,
-      "adminID": "324424",
-      "personName": "Alice",
-      "regulations": "7777"
-    },
-    {
-      "id": 3,
-      "adminID": "543535353",
-      "personName": "Mike",
-      "regulations": "75675"
-    },
-    {
-      "id": 4,
-      "adminID": "8768678",
-      "personName": "Fong",
-      "regulations": "7655756"
-    }
-    
+        "id": 2,
+        "adminID": "",
+        "locationName": "",
+        "regulations": "",
+        "fishTypes": "",
+        "insectHatches": "",
+        "dates": ""
+      },
+      {
+        "id": 3,
+        "adminID": "",
+        "locationName": "",
+        "regulations": "",
+        "fishTypes": "",
+        "insectHatches": "",
+        "dates": ""
+      },
+      {
+        "id": 4,
+        "adminID": "",
+        "locationName": "",
+        "regulations": "",
+        "fishTypes": "",
+        "insectHatches": "",
+        "dates": ""
+      }
+
   ]
