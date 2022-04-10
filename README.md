@@ -67,7 +67,7 @@ This folder will created in the root directory of the ```social-engineering-quiz
 ## 5. External Libaries
 Also, apply the following external libraries in your terminal before starting the application:
 ```
-npm install mobx \
+npm install mobx
 npm install react-router-dom@6
 ```
 
