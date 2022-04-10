@@ -15,7 +15,7 @@ import Table from './Table';
 import EditableLocationProfile from './Admin/EditableLocationProfile';
 import FishCaught from './User/FishCaught';
 import Conditions from './Water Conditions/Conditions';
-import Group from './Group/EditableLocationProfile';
+import Group from './Group/Group';
 
 
 
