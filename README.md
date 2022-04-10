@@ -1,6 +1,83 @@
-# Installations
+# CPSC 471 Winter 2022 Project: Fly Fishing
+
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Tools and Technologies](#tools-and-technologies)
+- [Authors](#authors)
+- [Resources](#resources)
+
+## Description
+This a full stack application that allows users interested in fly fishing to store their expeditions in various ways, such as logging every fish they catch, what fly they used, the weather conditions, etc. We are hoping that fly fishers are able to use this application to catch the fish that they want.\
+This project uses `React`as its frontend, and `MySQL` as the backend.
+
+# Tools and Technologies
+The following languages and tools were used to build our project:
+- ReactJS (JavaScript)
+- Node.js
+- CSS
+- MySQL
+
+
+# Installation
+### **<span style="color:red;">!!! Note !!!</span>** 
+- **This section is only necessary if you want to download the source code and run in it at localhost in your local device.**
+- **Otherwise, you can just go to the website provided here: [Social-Engineering-Quiz-Website](https://emiravc.github.io/Social-Engineering-Quiz/)**
+
+## 1. Node.js
+Download Node.js – LTS (Long Term Support) version is recommended for most users
+\
+After that, open up your terminal and check if `Node` is installed:
+```
+$ node -v
+v16.13.0
+```
+Also, check if `npm` is installed, which comes with `Node`
+```
+$ npm -v
+8.1.0
+```
+
+## 2. Clone GitHub Repository
+Enter the following on the terminal of your device to download the project:
+```
+$ git clone https://github.com/Joey-mi/social-engineering-quiz/tree/main-page
+```
+
+## 3. JSON File
+Go to the ```package.json``` file and go to "script" to confirm that you have the following:
+```javascript
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+```
+
+## Step 4: Install the Required Dependencies
+Apply the following command in your terminal before starting the application.
+
+```
+$ npm install
+```
+This will download all the dependencies defined in the ```package.json``` file and into a ```node_modules``` folder.\
+This folder will created in the root directory of the ```social-engineering-quiz``` folder in your local machine
+
+## 5. External Libaries
+Also, apply the following external libraries in your terminal before starting the application:
+```
 npm install mobx \
 npm install react-router-dom@6
+```
+
+## Step 6: Running the Project
+Go to the root directory of the project and then start the app like so:
+```
+$ cd 471_API_Project            // first, go to root directory of the project...
+$ npm start                     // then, start the app in the root directory
+```
+
 
 # Getting Started with Create React App
 
@@ -72,3 +149,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Authors
+This project was made by Computer Science Undergraduate students from the University of Calgary
+as a final project for the CPSC 471 Winter 2022 course. \
+Here is the list of authors:
+
+- [Ryab Smit]
+- [Gabriela Wcislo]
+- [Anish Pokhrel](https://github.com/apokhrel7)
+
+# Resources
+- https://fullstackopen.com/en/ 
+
+
