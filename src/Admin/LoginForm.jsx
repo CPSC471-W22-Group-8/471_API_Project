@@ -1,5 +1,6 @@
 import React from 'react';
 import InputField from '../InputField';
+import { useNavigate } from "react-router-dom";
 import SubmitButton from '../SubmitButton';
 import UserStore from '../stores/UserStore';
 
@@ -33,6 +34,7 @@ class LoginForm extends React.Component {
     })
   }
 
+
   async doLogin() {
     if (!this.state.username) {
       return;
@@ -59,8 +61,10 @@ class LoginForm extends React.Component {
         })
 
       });
-      
+    
+
       // user login form result
+
       let result = await res.json();
       if (result && result.success) {
         UserStore.isLoggedIn = true;

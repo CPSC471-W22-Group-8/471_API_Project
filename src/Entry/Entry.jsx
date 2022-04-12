@@ -253,7 +253,7 @@ const Entry = () => {
         </table>
       </form>
 
-      <h2>Add Entry</h2>
+      <h2>Search Entries</h2>
     
       <form onSubmit={handleAddFormSubmit}>        
       <input
@@ -270,25 +270,11 @@ const Entry = () => {
           placeholder="Enter date"
           onChange={handleAddFormChange}
         />
-        <input                                      
-          type="text"
-          name="public"
-          required="true"
-          placeholder="Public or private"
-          onChange={handleAddFormChange}
-        />
         <input
           type="text"
           name="insectCaught"
           required="false"
           placeholder="Enter insect caught"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="fly"
-          required="false"
-          placeholder="Enter fly look-alike"
           onChange={handleAddFormChange}
         />
         <input
@@ -312,63 +298,8 @@ const Entry = () => {
           placeholder="Enter fish caught"
           onChange={handleAddFormChange}
         />
-        <input
-          type="text"
-          name="fishSize"
-          required="false"
-          placeholder="Enter fish size"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="fishWeight"
-          required="false"
-          placeholder="Enter fish weight"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="temperature"
-          required="false"
-          placeholder="Enter temperature"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="wind"
-          required="false"
-          placeholder="Enter wind"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="sky"
-          required="false"
-          placeholder="Enter sky"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="waterFlow"
-          required="false"
-          placeholder="Enter water flow"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="waterVisibility"
-          required="false"
-          placeholder="Enter water visibility"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="url"
-          name="picture"
-          required="false"
-          placeholder="Enter picture"
-          onChange={handleAddFormChange}
-        />
-        <button type="submit">Add</button>
+
+        <button type="submit">Search</button>
       </form>
     </div>
 

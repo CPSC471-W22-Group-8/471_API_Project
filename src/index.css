@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
 }
 
 code {

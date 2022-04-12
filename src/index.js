@@ -8,8 +8,15 @@ import {BrowserRouter} from 'react-router-dom';
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <div class="sidenav">
+    <a href="/user/userpage">Home</a>
+    <a href="/search/entry">Entries</a>
+    <a href="/search/locationprofile">Locations</a>
+    <a href="/group">Groups</a>
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './App.css';
 //import { observer } from 'mobx-react';  // mobx-react not working
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 //import Login from './Login';
 import MainPage from './MainPage/MainPage';
 import AdminLogin from './Admin/LoginForm'
@@ -13,7 +13,7 @@ import Entry from './Entry/Entry';
 import Group from './Group/Groups';
 import EditableLocationProfile from './Admin/EditableLocationProfile';
 import SearchLocationProfile from './Admin/SearchLocationProfile';
-import SearchEntry from './Entry/SearchEntry';
+import CreateEntry from './Entry/CreateEntry';
 
 
 
@@ -30,10 +30,10 @@ function App() {
       <Route exact path='/user/login' element={<UserLogin />} />
       <Route exact path='/user/userpage' element={<UserPage />} />
       <Route exact path='/admin/adminpage' element={<AdminPage />} />
-      <Route path='/entry' element={<Entry />} />
+      <Route path='/entry' element={<CreateEntry />} />
       <Route path='/group' element={<Group />} />
       <Route path='/locationprofile' element={<EditableLocationProfile />} />
-      <Route path='/search/entry' element={<SearchEntry />} />
+      <Route path='/search/entry' element={<Entry />} />
       <Route path='/search/locationprofile' element={<SearchLocationProfile />} />
       </Routes>
 
