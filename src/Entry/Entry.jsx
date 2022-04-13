@@ -76,32 +76,33 @@ const Entry = () => {
     setEditFormData(newFormData);
   };
 
-  const handleAddFormSubmit = (event) => {
+  const handleSearchFormSubmit = (event) => {
     event.preventDefault();
 
     const newContact = {
       id: nanoid(),
       location: addFormData.location,
       date: addFormData.date,
-      public: addFormData.public,
       insectCaught: addFormData.insectCaught,
-      fly: addFormData.fly,
       flyUsed: addFormData.flyUsed,
       success: addFormData.success,
       fishCaught: addFormData.fishCaught,
-      fishSize: addFormData.fishSize,
-      fishWeight: addFormData.fishWeight,
-      waterFlow: addFormData.waterFlow,
-      waterVisibility: addFormData.waterVisibility,
-      wind: addFormData.wind,
-      sky: addFormData.sky,
-      temperature: addFormData.temperature,
-      picture: addFormData.picture
-      
     };
+    //send newContact as JSON
+    search(newContact);
+    // or resContacts = search(newContact)
+    // setContacts(resContacts);
+  };
 
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
+  const search = (query) => {
+    const requestOptions = {
+        method: 'GET',
+        //headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(query)
+    }
+    fetch('/entry/search', requestOptions)    //or ?s={query}
+    .then(response => response.json())
+    .then(data => setContacts(data));
   };
 
   const handleEditFormSubmit = (event) => {
@@ -255,46 +256,40 @@ const Entry = () => {
 
       <h2>Search Entries</h2>
     
-      <form onSubmit={handleAddFormSubmit}>        
+      <form onSubmit={handleSearchFormSubmit}>        
       <input
           type="text"
           name="location"
-          required="true"
           placeholder="Enter location"
           onChange={handleAddFormChange}
         />
         <input
           type="date"
           name="date"
-          required="true"
           placeholder="Enter date"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="insectCaught"
-          required="false"
           placeholder="Enter insect caught"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="flyUsed"
-          required="false"
           placeholder="Enter fly used"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="success"
-          required="false"
           placeholder="Enter success"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="fishCaught"
-          required="false"
           placeholder="Enter fish caught"
           onChange={handleAddFormChange}
         />

@@ -43,7 +43,7 @@ const EditTable = ({
           required="required"
           placeholder="Enter Fish Types"
           name="fishTypes"
-          value={editFormData.FishTypes}
+          value={editFormData.fishTypes}
           onChange={handleEditFormChange}
         ></input>
       </td>
