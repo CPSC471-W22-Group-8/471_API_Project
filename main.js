@@ -18,24 +18,56 @@ $ node main.js
 
 const express = require('express')
 const mysql = require('mysql')
+const uuid = require('uuid')
 
-const app = express()
+const app = express();
+const http = require('http');
+// const httpServer = http.createServer(app);
+// httpServer.on('error', err => winston.error(`Unexpected HTTP error: ${JSON.stringify(err, errorFieldsReplacer)}`));
 
-const dbConnect = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'group8superpass',
-    database: 'group8'
-})
+const uid = uuid.v4();
+console.log(`uuid: ${uid}`);
 
-dbConnect.connect(err => {
-    if (err) throw err;
-    console.log("Connected!");
-})
+// const dbConnect = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'group8superpass',
+//     database: 'group8'
+// })
 
-const sampleQuery = 'SELECT * FROM users'
+// dbConnect.connect(err => {
+//     if (err) throw err;
+//     console.log("Connected!");
+// })
 
-dbConnect.query(sampleQuery, (err, result) => {
-    if (err) throw err;
-    console.log("Result: " + JSON.stringify(result));
-})
+// const sampleQuery = 'SELECT * FROM users'
+
+// dbConnect.query(sampleQuery, (err, result) => {
+//     if (err) throw err;
+//     console.log("Result: " + JSON.stringify(result));
+// })
+
+// Routes
+
+const entry = require('./routes/entry.js');
+//app.use('api/v1', )
+app.use(express.json());
+app.get('/entry/search', entry.searchEntries)
+app.get('/entry/:id', entry.checkAuth)
+app.post('/entry', entry.createEntry)
+app.post('/entry/review/:id', entry.createReview)
+
+
+
+
+
+const start = () => {
+    try {
+        app.listen(5000)
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
+start();
