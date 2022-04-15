@@ -65,6 +65,7 @@ app.delete('/entry/review/:id', entry.deleteReview)
 app.get('/user/:username', user.checkCredentials)
 
 app.get('/locationprofile', location.getProfile)
+app.post('/locationprofile', location.createProfile)
 
 
 const start = () => {

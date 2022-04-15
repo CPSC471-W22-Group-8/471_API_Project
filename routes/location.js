@@ -24,6 +24,37 @@ const LocationRoute = {
             }
         }
     },
+
+    async createProfile(req, res, next) {
+        const q = req.query;
+        const p = req.params;
+        const b = req.body;
+
+        console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${JSON.stringify(b)}`);
+        if (!b.name) res.status(500).send('Invalid request.')
+        else {
+            const check_admin = await db.query('select `admin_id` from `admins` where `admin_id` = ' + mysql.escape(b.admin_id)).catch(err => {throw err})
+            if (!check_admin) {
+                res.status(500).send('Invalid request.')
+                return;
+            }
+
+            const qString = 'INSERT INTO `location_profiles`(`name`, `admin_id`, `regulations`) values (' 
+            + mysql.escape(b.name) + ', ' +
+            mysql.escape(b.admin_id) + ', ' +
+            mysql.escape(b.regulations) + ')'
+            const results = await db.query(qString).catch(err => {throw err})
+            if (!results) res.status(404).send('Invalid request.')
+            else {
+                if (results) {
+                    res.status(200).send(results)
+                }
+                else {
+                    res.status(404).send('Invalid request.')
+                }
+            }
+        }
+    },
 }
 
 module.exports = LocationRoute
