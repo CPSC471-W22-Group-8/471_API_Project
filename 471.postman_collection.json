@@ -221,6 +221,151 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get group info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\": \"PPMf56O3x\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/group/WLxUlWmni",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"group",
+						"WLxUlWmni"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create group",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Sylvan Lake\",\n\"admin_id\": \"PPMf56O3x\",\n\"regulations\": \"some regulations\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/locationprofile",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"locationprofile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add user to group",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\": \"2_C76miq0\",\n\"user_id\": \"tMYWeQDP-\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/group/user/WLxUlWmni",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"group",
+						"user",
+						"WLxUlWmni"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user from group",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\": \"2_C76miq0\",\n\"user_id\": \"tMYWeQDP-\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/group/user/WLxUlWmni",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"group",
+						"user",
+						"WLxUlWmni"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete group",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\": \"2_C76miq0\",\n\"user_id\": \"tMYWeQDP-\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/group/user/WLxUlWmni",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"group",
+						"user",
+						"WLxUlWmni"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

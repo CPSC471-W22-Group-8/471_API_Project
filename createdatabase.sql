@@ -78,7 +78,7 @@ Store 'groups' multi-valued attribute of user in a new table
 */
 
 CREATE TABLE `user_groups` (
-  `user_id` varchar(14) NOT NULL UNIQUE,
+  `user_id` varchar(14) NOT NULL,
   `group_id` varchar(14) NOT NULL,
   PRIMARY KEY (`user_id`, `group_id`),
   FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) ON DELETE CASCADE,
@@ -104,11 +104,11 @@ CREATE TABLE `entries` (
 );
 
 CREATE TABLE `entry_groups` (
-  `entry_id` varchar(14) NOT NULL UNIQUE,
+  `entry_id` varchar(14) NOT NULL,
   `group_id` varchar(14) NOT NULL,
   PRIMARY KEY (`entry_id`, `group_id`),
   FOREIGN KEY (`entry_id`) REFERENCES `entries`(`entry_id`) ON DELETE CASCADE,
-  FOREIGN KEY (`group_id`) REFERENCES `groups`(`group_id`)
+  FOREIGN KEY (`group_id`) REFERENCES `groups`(`group_id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `reviews` (
@@ -157,6 +157,9 @@ insert into `groups`(`group_id`, `name`, `owner`) values
 -- Add user to group
 insert into `user_groups`(`user_id`, `group_id`) values 
 	('yqQ01F11Y', 'WLxUlWmni');
+
+insert into `user_groups`(`user_id`, `group_id`) values 
+	('2_C76miq0', 'WLxUlWmni');
 
 -- Add entry
 insert into `entries`(`entry_id`, `location`, `date`, `private_flag`, `user_id`, `admin_id`, `public_flag`) values 

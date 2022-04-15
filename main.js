@@ -17,42 +17,16 @@ $ node main.js
 */
 
 const express = require('express')
-const mysql = require('mysql')
-const uuid = require('uuid')
 
 const app = express();
-const http = require('http');
-// const httpServer = http.createServer(app);
-// httpServer.on('error', err => winston.error(`Unexpected HTTP error: ${JSON.stringify(err, errorFieldsReplacer)}`));
-
-const uid = uuid.v4();
-console.log(`uuid: ${uid}`);
-
-// const dbConnect = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'group8superpass',
-//     database: 'group8'
-// })
-
-// dbConnect.connect(err => {
-//     if (err) throw err;
-//     console.log("Connected!");
-// })
-
-// const sampleQuery = 'SELECT * FROM users'
-
-// dbConnect.query(sampleQuery, (err, result) => {
-//     if (err) throw err;
-//     console.log("Result: " + JSON.stringify(result));
-// })
 
 // Routes
 
 const entry = require('./routes/entry.js');
 const user = require('./routes/user.js');
 const location = require('./routes/location');
-//app.use('api/v1', )
+const group = require('./routes/group')
+
 app.use(express.json());
 app.get('/entry/search', entry.searchEntries)
 app.get('/entry/:id', entry.checkAuth)
@@ -62,11 +36,23 @@ app.post('/entry/review/:id', entry.createReview)
 app.delete('/entry/:id', entry.deleteEntry)
 app.delete('/entry/review/:id', entry.deleteReview)
 
-app.get('/user/:username', user.checkCredentials)
+app.get('/user/login/:username', user.checkCredentials)   // returns user_id to be used in subsequent queries
+//app.get('/user/:id', user.getUserInfo)
+//app.get('/user/statistics/:id', user.getStatistics)
+//app.put('/user/:id', user.updateUserInfo)
 
+// Name of location profile will be passed in the body instead
 app.get('/locationprofile', location.getProfile)
 app.post('/locationprofile', location.createProfile)
+//app.put('/locationprofile', location.updateProfile)
+//app.delete('/locationprofile', location.deleteProfile)
 
+
+app.get('/group/:id', group.getGroupInfo)
+app.post('/group', group.createGroup)
+app.put('/group/user/:id', group.addUser)
+app.delete('/group/user/:id', group.deleteUser)
+app.delete('/group/:id', group.deleteGroup)
 
 const start = () => {
     try {
