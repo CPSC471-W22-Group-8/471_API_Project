@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "adminID": "543535353",
+      "personName": "Bob",
+      "regulations": "443535"
+    },
+    {
+      "id": 2,
+      "adminID": "324424",
+      "personName": "Alice",
+      "regulations": "7777"
+    },
+    {
+      "id": 3,
+      "adminID": "543535353",
+      "personName": "Mike",
+      "regulations": "75675"
+    },
+    {
+      "id": 4,
+      "adminID": "8768678",
+      "personName": "Fong",
+      "regulations": "7655756"
+    }
+    
+  ]
