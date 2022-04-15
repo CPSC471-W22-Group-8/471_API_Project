@@ -50,6 +50,8 @@ console.log(`uuid: ${uid}`);
 // Routes
 
 const entry = require('./routes/entry.js');
+const user = require('./routes/user.js');
+const location = require('./routes/location');
 //app.use('api/v1', )
 app.use(express.json());
 app.get('/entry/search', entry.searchEntries)
@@ -60,7 +62,9 @@ app.post('/entry/review/:id', entry.createReview)
 app.delete('/entry/:id', entry.deleteEntry)
 app.delete('/entry/review/:id', entry.deleteReview)
 
+app.get('/user/:username', user.checkCredentials)
 
+app.get('/locationprofile', location.getProfile)
 
 
 const start = () => {

@@ -23,6 +23,9 @@ USE `group8`;
 
 DROP TABLE IF EXISTS `user_groups`;
 DROP TABLE IF EXISTS `entry_groups`;
+DROP TABLE IF EXISTS `location_profiles`;
+DROP TABLE IF EXISTS `conditions`;
+
 
 
 DROP TABLE IF EXISTS `reviews`;
@@ -31,6 +34,8 @@ DROP TABLE IF EXISTS `entries`;
 DROP TABLE IF EXISTS `admins`;
 DROP TABLE IF EXISTS `groups`;
 DROP TABLE IF EXISTS `users`;
+
+
 
 /* 
 Change to RM: ?
@@ -115,6 +120,24 @@ CREATE TABLE `reviews` (
   FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
 );
 
+CREATE TABLE `location_profiles` ( 
+	`name` varchar(50) NOT NULL UNIQUE,
+	`admin_id` varchar(14),
+	`regulations` varchar(500),
+	PRIMARY KEY (`name`),
+	FOREIGN KEY (`admin_id`) REFERENCES `admins`(`admin_id`) ON DELETE SET NULL
+);
+
+CREATE TABLE `conditions` ( 
+	`entry_id` varchar(14) NOT NULL UNIQUE,
+	`water_flow` varchar(50),
+	`water_visibility` varchar(50),
+	`wind` varchar(50), 
+	`sky` varchar(50),
+	`temperature` varchar(5),
+	PRIMARY KEY (`entry_id`),
+	FOREIGN KEY (`entry_id`) REFERENCES `entries`(`entry_id`) ON DELETE CASCADE
+);
 
 -- Add Users
 insert into `users`(`user_id`, `email`, `username`, `password`) values
@@ -148,3 +171,6 @@ insert into `entry_groups`(`entry_id`, `group_id`) values
 
 insert into `entries`(`entry_id`, `location`, `date`, `private_flag`, `user_id`, `admin_id`, `public_flag`) values 
 	('lLKD0M0_Z', 'Bow River', '1649950869', '0', 'tMYWeQDP-', 'keVTJhRTV', '1');
+
+insert into `location_profiles`(`name`, `admin_id`, `regulations`) values
+	('Lake Louise', 'keVTJhRTV', 'some regulations');
