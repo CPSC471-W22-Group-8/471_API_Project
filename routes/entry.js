@@ -154,6 +154,7 @@ const EntryRoute = {
 
             if (b.requestor_id != entry.user_id && !authorized) {
                 res.status(500).send('Insufficient permissions.')
+                return;
             }
 
             var qString = 'insert into `reviews`(`entry_id`, `rating`, `user_id`) values' +
@@ -169,6 +170,78 @@ const EntryRoute = {
             }
         }
     },
+
+    async deleteReview(req, res, next) {
+        const q = req.query;
+        const p = req.params;
+        const b = req.body;
+
+        console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${JSON.stringify(b)}`);
+        if (!b.requestor_id) res.status(500).send('Invalid request.')
+        else {
+            const entryid = p.id
+            // get entry
+            const review = await db.query('select * from `reviews` where `entry_id` = ' + mysql.escape(entryid) +
+                ' and `user_id` = ' + mysql.escape(q.userid)).catch(err => {throw err})
+            console.log(review.sql)
+            
+            const entry = await db.query('select * from `entries` where `entry_id` = ' + mysql.escape(entryid) +
+                ' and `user_id` = ' + mysql.escape(q.userid)).catch(err => {throw err})
+
+
+            if ((!review[0] || !entry[0]) || (b.requestor_id != review[0].user_id && b.requestor_id != entry[0].admin_id )) {
+                res.status(500).send('Insufficient permissions.')
+                return;
+            }
+
+            var qString = 'delete from `reviews` where `entry_id` = ' + mysql.escape(p.id) +
+                ' and `user_id` = ' + mysql.escape(q.userid)
+
+            console.log(qString)
+
+            const results = await db.query(qString).catch(err => {throw err})
+
+            if (!results) res.status(200).send([])
+            else {
+                res.status(200).send(results)
+            }
+        }
+    },
+
+    async deleteEntry(req, res, next) {
+        const q = req.query;
+        const p = req.params;
+        const b = req.body;
+
+        console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${JSON.stringify(b)}`);
+        if (!b.requestor_id) res.status(500).send('Invalid request.')
+        else {
+            const entryid = p.id
+
+            const entry = await db.query('select * from `entries` where `entry_id` = ' + mysql.escape(entryid) +
+                ' and `user_id` = ' + mysql.escape(b.requestor_id)).catch(err => {throw err})
+
+
+            if (!entry[0] || b.requestor_id != entry[0].user_id) {
+                res.status(500).send('Insufficient permissions.')
+                return;
+            }
+
+            var qString = 'delete from `entries` where `entry_id` = ' + mysql.escape(p.id) +
+                ' and `user_id` = ' + mysql.escape(b.requestor_id)
+
+            console.log(qString)
+
+            const results = await db.query(qString).catch(err => {throw err})
+
+            if (!results) res.status(200).send([])
+            else {
+                res.status(200).send(results)
+            }
+        }
+    },
+
+
 
 }
 

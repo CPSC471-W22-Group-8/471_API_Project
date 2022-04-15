@@ -56,7 +56,9 @@ app.get('/entry/search', entry.searchEntries)
 app.get('/entry/:id', entry.checkAuth)
 app.post('/entry', entry.createEntry)
 app.post('/entry/review/:id', entry.createReview)
-
+//app.put('/entry/:id', entry.updateEntry),
+app.delete('/entry/:id', entry.deleteEntry)
+app.delete('/entry/review/:id', entry.deleteReview)
 
 
 

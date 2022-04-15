@@ -76,8 +76,8 @@ CREATE TABLE `user_groups` (
   `user_id` varchar(14) NOT NULL UNIQUE,
   `group_id` varchar(14) NOT NULL,
   PRIMARY KEY (`user_id`, `group_id`),
-  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`),
-  FOREIGN KEY (`group_id`) REFERENCES `groups`(`group_id`)
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) ON DELETE CASCADE,
+  FOREIGN KEY (`group_id`) REFERENCES `groups`(`group_id`) ON DELETE CASCADE
 );
 
 /* 
@@ -94,15 +94,15 @@ CREATE TABLE `entries` (
   `admin_id` varchar(14),
   `public_flag` int,
   PRIMARY KEY (`entry_id`),
-  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`),
-  FOREIGN KEY (`admin_id`) REFERENCES `admins`(`admin_id`)
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) ON DELETE CASCADE,
+  FOREIGN KEY (`admin_id`) REFERENCES `admins`(`admin_id`) ON DELETE SET NULL
 );
 
 CREATE TABLE `entry_groups` (
   `entry_id` varchar(14) NOT NULL UNIQUE,
   `group_id` varchar(14) NOT NULL,
   PRIMARY KEY (`entry_id`, `group_id`),
-  FOREIGN KEY (`entry_id`) REFERENCES `entries`(`entry_id`),
+  FOREIGN KEY (`entry_id`) REFERENCES `entries`(`entry_id`) ON DELETE CASCADE,
   FOREIGN KEY (`group_id`) REFERENCES `groups`(`group_id`)
 );
 
@@ -111,7 +111,7 @@ CREATE TABLE `reviews` (
   `rating` varchar(14) NOT NULL,
   `user_id` varchar(14) NOT NULL,
   PRIMARY KEY (`entry_id`, `user_id`),
-  FOREIGN KEY (`entry_id`) REFERENCES `entries`(`entry_id`),
+  FOREIGN KEY (`entry_id`) REFERENCES `entries`(`entry_id`) ON DELETE CASCADE,
   FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
 );
 
