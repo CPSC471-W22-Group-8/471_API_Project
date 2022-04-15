@@ -5,24 +5,26 @@ import data from "./sample-table-data.json";
 import ViewTable from "./ViewTable";
 import EditTable from "./EditTable";
 
-const Conditions = () => {
+const FishCaught = () => {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     entryId: "",
-    waterVisibility: "",
-    wind: "",
-    sky: "",
-    temperature: ""
+    fishType: "",
+    fishSize: "",
+    weight: "",
+    flyType: "",
+    success: ""
     // date: "",
     // something: ""
   });
 
   const [editFormData, setEditFormData] = useState({
     entryId: "",
-    waterVisibility: "",
-    wind: "",
-    sky: "",
-    temperature: ""
+    fishType: "",
+    fishSize: "",
+    weight: "",
+    flyType: "",
+    success: ""
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -56,10 +58,11 @@ const Conditions = () => {
 
     const newContact = {
       id: nanoid(),
-      waterVisibility: addFormData.waterVisibility,
-      wind: addFormData.wind,
-      sky: addFormData.sky,
-      temperature: addFormData.temperature
+      fishType: addFormData.fishType,
+      fishSize: addFormData.fishSize,
+      weight: addFormData.weight,
+      flyType: addFormData.flyType,
+      success: addFormData.success
     //   date: addFormData.date,
     //   something: addFormData.something,
       
@@ -74,10 +77,11 @@ const Conditions = () => {
 
     const editedContact = {
       id: editContactId,
-      waterVisibility: editFormData.waterVisibility,
-      wind: editFormData.wind,
-      sky: editFormData.sky,
-      temperature: editFormData.temperature
+      fishType: editFormData.fishType,
+      fishSize: editFormData.fishSize,
+      weight: editFormData.weight,
+      flyType: editFormData.flyType,
+      success: editFormData.success
     //   date: editFormData.date,
     //   something: addFormData.something,
     };
@@ -97,10 +101,11 @@ const Conditions = () => {
     setEditContactId(contact.id);
 
     const formValues = {
-      waterVisibility: contact.waterVisibility,
-      wind: contact.wind,
-      sky: contact.sky,
-      temperature: contact.temperature
+      fishType: contact.fishType,
+      fishSize: contact.fishSize,
+      weight: contact.weight,
+      flyType: contact.flyType,
+      success: contact.success
     //   date: contact.date,
     //   something: contact.something,
     };
@@ -124,15 +129,16 @@ const Conditions = () => {
 
   return (
     <div className="table-container">
-      <h1>Conditions</h1>
+      <h1>Fish Caught</h1>
       <form onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
             <tr>
-              <th>Water Visibility</th>
-              <th>Wind</th>
-              <th>Sky</th>  
-              <th>Temperature</th>
+              <th>Fish Type</th>
+              <th>Fish Size</th>
+              <th>Weight</th>  
+              <th>Fly Type</th>
+              <th>Success</th>
             </tr>
           </thead>
           <tbody>
@@ -162,30 +168,37 @@ const Conditions = () => {
       <form onSubmit={handleAddFormSubmit}>         
         <input                                      // all inputs must be required
           type="text"
-          name="waterVisibility"
+          name="fishType"
           required="true"
-          placeholder="Enter water visibility"
+          placeholder="Enter fish type"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
-          name="wind"
+          name="fishSize"
           required="true"
-          placeholder="Enter wind"
+          placeholder="Enter fish size"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
-          name="sky"
+          name="weight"
           required="true"
-          placeholder="Enter sky"
+          placeholder="Enter fish weight"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
-          name="temperature"
+          name="flyType"
           required="true"
-          placeholder="Enter temperature"
+          placeholder="Enter fly type"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="success"
+          required="true"
+          placeholder="Enter success"
           onChange={handleAddFormChange}
         />
         <button type="submit">Add</button>
@@ -194,4 +207,4 @@ const Conditions = () => {
   );
 };
 
-export default Conditions;
+export default FishCaught;

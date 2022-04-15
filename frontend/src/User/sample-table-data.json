@@ -4,28 +4,33 @@
       "fishType": "Salmon",
       "fishSize": "30",
       "weight": "60",
-      "flyType": "regular"
+      "flyType": "regular",
+      "success": "9"
     },
     {
       "id": 2,
       "fishType": "Trout",
       "fishSize": "30",
       "weight": "90",
-      "flyType": "something"
+      "flyType": "something",
+      "success": "6"
+      
     },
     {
       "id": 3,
       "fishType": "Bass",
       "fishSize": "30",
       "weight": "60",
-      "flyType": "something"
+      "flyType": "something",
+      "success": "3"
     },
     {
       "id": 4,
       "fishType": "Shark",
       "fishSize": "30",
       "weight": "20",
-      "flyType": "something"
+      "flyType": "something",
+      "success": "5"
     }
     
   ]

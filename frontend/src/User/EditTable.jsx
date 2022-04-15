@@ -11,9 +11,29 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter water visibility"
-          name="waterVisibility"
-          value={editFormData.waterVisibility}
+          placeholder="Enter fish type"
+          name="fishType"
+          value={editFormData.fishType}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="number" min="0"
+          required="required"
+          placeholder="Enter fish size"
+          name="fishSize"
+          value={editFormData.fishSize}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="number" min="0"
+          required="required"
+          placeholder="Enter weight"
+          name="weight"
+          value={editFormData.weight}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -21,29 +41,19 @@ const EditTable = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter wind"
-          name="wind"
-          value={editFormData.wind}
+          placeholder="Enter fly type"
+          name="flyType"
+          value={editFormData.flyType}
           onChange={handleEditFormChange}
         ></input>
       </td>
       <td>
         <input
-          type="text"
+          type="number" min="1" max="10"
           required="required"
-          placeholder="Enter sky"
-          name="sky"
-          value={editFormData.sky}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter temperature"
-          name="temperature"
-          value={editFormData.temperature}
+          placeholder="Enter success rate"
+          name="success"
+          value={editFormData.success}
           onChange={handleEditFormChange}
         ></input>
       </td>

@@ -3,10 +3,11 @@ import React from "react";
 const ViewTable = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
-      <td>{contact.waterVisibility}</td>
-      <td>{contact.wind}</td>
-      <td>{contact.sky}</td>
-      <td>{contact.temperature}</td>
+      <td>{contact.fishType}</td>
+      <td>{contact.fishSize}</td>
+      <td>{contact.weight}</td>
+      <td>{contact.flyType}</td>
+      <td>{contact.success}</td>
       
       <td>
         <button

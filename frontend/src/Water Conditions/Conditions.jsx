@@ -182,7 +182,7 @@ const Conditions = () => {
           onChange={handleAddFormChange}
         />
         <input
-          type="text"
+          type="number"
           name="temperature"
           required="true"
           placeholder="Enter temperature"
