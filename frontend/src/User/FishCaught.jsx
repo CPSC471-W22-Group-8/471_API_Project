@@ -5,14 +5,93 @@ import data from "./sample-table-data.json";
 import ViewTable from "./ViewTable";
 import EditTable from "./EditTable";
 
-const FishCaught = () => {
-  const [contacts, setContacts] = useState(data);
+const requestEntry = async () => {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+    "requestor_id": "tMYWeQDP-"
+  });
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  var result = await fetch("localhost:5000/entry/5Ox7OjhHJ", requestOptions)
+    .then(response => response.text())
+    .then((result) => {console.log(result); return result})
+    .catch(error => console.log('error', error));
+  return result
+}
+
+const requestEntry2 = async () => {
+  var res;
+  var data = JSON.stringify({
+    "requestor_id": "tMYWeQDP-"
+  });
+
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      console.log('res text = ' + this.responseText);
+      res = this.responseText;
+    }
+  });
+
+  xhr.open("GET", "localhost:5000/entry/5Ox7OjhHJ");
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.send(data);
+  return res;
+}
+
+const FishCaught = async () => {
+  //var data = requestEntry2();
+  const [contacts, setContacts] = useState(null);
+  //console.log(data);
+  // var myHeaders = new Headers();
+  // myHeaders.append("Content-Type", "application/json");
+
+  // var raw = JSON.stringify({
+  //   "requestor_id": "tMYWeQDP-"
+  // });
+
+  // var requestOptions = {
+  //   method: 'GET',
+  //   headers: myHeaders,
+  //   body: raw,
+  //   redirect: 'follow'
+  // };
+
+  // useEffect(() => {
+  //   fetch("localhost:5000/entry/5Ox7OjhHJ", requestOptions)
+  //     .then(res => res.json())
+  //     .then(
+  //       (result) => {
+  //         setIsLoaded(true);
+  //         setItems(result);
+  //       },
+  //       // Note: it's important to handle errors here
+  //       // instead of a catch() block so that we don't swallow
+  //       // exceptions from actual bugs in components.
+  //       (error) => {
+  //         setIsLoaded(true);
+  //         setError(error);
+  //       }
+  //     )
+  // }, [])
+
   const [addFormData, setAddFormData] = useState({
-    entryId: "",
-    fishType: "",
-    fishSize: "",
+    entry_id: "",
+    fish_type: "",
+    fish_size: "",
     weight: "",
-    flyType: "",
+    fly_type: "",
     success: ""
     // date: "",
     // something: ""
