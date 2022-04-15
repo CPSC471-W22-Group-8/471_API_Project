@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "aaa4ec29-8862-43ca-b661-b0b6a7d946ac",
+		"name": "471",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "entry",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\": \"tMYWeQDP-\",\n\"date\": \"1649950868\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/entry/search",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"entry",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/entry",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\": \"tMYWeQDP-\",\n\"location\": \"Lake Louise\",\n\"private_flag\": 1,\n\"public_flag\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/entry",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"entry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/entry/review/5Ox7OjhHJ?rating=8",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\": \"yqQ01F11Y\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/entry/review/5Ox7OjhHJ?rating=8",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"entry",
+						"review",
+						"5Ox7OjhHJ"
+					],
+					"query": [
+						{
+							"key": "rating",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/entry/review/5Ox7OjhHJ?userid=yqQ01F11Y",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\" : \"yqQ01F11Y\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/entry/review/5Ox7OjhHJ?userid=yqQ01F11Y",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"entry",
+						"review",
+						"5Ox7OjhHJ"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "yqQ01F11Y"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get location profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"password\": \"101010\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/user/user1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"user1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"password\": \"101010\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/user/user1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"user1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add location profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Sylvan Lake\",\n\"admin_id\": \"PPMf56O3x\",\n\"regulations\": \"some regulations\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/locationprofile",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"locationprofile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
