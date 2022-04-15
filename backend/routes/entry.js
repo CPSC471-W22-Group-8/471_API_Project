@@ -77,24 +77,25 @@ const EntryRoute = {
             if (b.date) {
                 unixms = parseInt(b.date) * 1000
                 day = dayjs(unixms)
-                console.log(day)
                 mindate = day.startOf('day').unix()
                 maxdate = day.endOf('day').unix()
-                console.log(dayjs(b.date).startOf('day'))
                 qString = qString + ` AND date < ${mysql.escape(maxdate)} AND date > ${mysql.escape(mindate)}`
             }
+            
             console.log(qString)
-
-            // var conditionsQuery = ''
-            // if (b.conditions.water_flow) {
-            //     qString = qString + `location = ${mysql.escape(b.conditions.water_flow)}`
-            // }
-
-            // if (b.conditions.water_visibility) {
-
-            // }
-
             const results = await db.query(qString).catch(err => {throw err})
+
+            if (b.success) {
+                var flies_used_query = 'select `entry_id` from `flies_used` where `success` = 1'
+                const flies_results = await db.query(qString).catch(err => {throw err})
+                flies
+            }
+
+            if (b.conditions.water_visibility) {
+
+            }
+
+            
             
             if (!results) res.status(200).send([])
             else {
