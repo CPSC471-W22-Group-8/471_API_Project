@@ -1,7 +1,6 @@
 
 const mysql = require('mysql')
 const db = require('../connect-promisify');
-const dayjs = require('dayjs')
 var shortid = require('shortid');
 
 const GroupRoute = {

@@ -37,9 +37,9 @@ app.delete('/entry/:id', entry.deleteEntry)
 app.delete('/entry/review/:id', entry.deleteReview)
 
 app.get('/user/login/:username', user.checkCredentials)   // returns user_id to be used in subsequent queries
-//app.get('/user/:id', user.getUserInfo)
+app.get('/user/:id', user.getUserInfo)
 //app.get('/user/statistics/:id', user.getStatistics)
-//app.put('/user/:id', user.updateUserInfo)
+app.put('/user/:id', user.updateEmail)
 
 // Name of location profile will be passed in the body instead
 app.get('/locationprofile', location.getProfile)
