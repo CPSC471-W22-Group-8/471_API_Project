@@ -78,7 +78,7 @@ const CreateEntry = () => {
         //headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(query)
     }
-    fetch('/entry', requestOptions)    //or ?s={query}
+    fetch('localhost:5000/entry', requestOptions)    //or ?s={query}
     .then(response => response.json())
     alert('Entry successfully created!')
     const form = document.getElementById('create');

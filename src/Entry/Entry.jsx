@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 
+import test from "./test.json";
 import data from "./sample-table-data.json";
 import ViewTable from "./ViewTable";
 import EditTable from "./EditTable";
@@ -92,17 +93,20 @@ const Entry = () => {
     search(newContact);
     // or resContacts = search(newContact)
     // setContacts(resContacts);
+    const form = document.getElementById('search');
+    form.reset();
   };
 
   const search = (query) => {
     const requestOptions = {
         method: 'GET',
-        //headers: { 'Content-Type': 'application/json' },
+        header: { 'Content-Type': 'application/json' },
         body: JSON.stringify(query)
     }
-    fetch('/entry/search', requestOptions)    //or ?s={query}
-    .then(response => response.json())
-    .then(data => setContacts(data));
+    fetch('http://localhost:5000/entry/search', {requestOptions})    //or ?s={query}
+    .then(res => res.json())
+    setContacts(test);
+    
   };
 
   const handleEditFormSubmit = (event) => {
@@ -256,7 +260,7 @@ const Entry = () => {
 
       <h2>Search Entries</h2>
     
-      <form onSubmit={handleSearchFormSubmit}>        
+      <form id="search" onSubmit={handleSearchFormSubmit}>        
       <input
           type="text"
           name="location"
