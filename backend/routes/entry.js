@@ -85,15 +85,15 @@ const EntryRoute = {
             console.log(qString)
             const results = await db.query(qString).catch(err => {throw err})
 
-            if (b.success) {
-                var flies_used_query = 'select `entry_id` from `flies_used` where `success` = 1'
-                const flies_results = await db.query(qString).catch(err => {throw err})
-                flies
-            }
+            // if (b.success) {
+            //     var flies_used_query = 'select `entry_id` from `flies_used` where `success` = 1'
+            //     const flies_results = await db.query(qString).catch(err => {throw err})
+            //     flies
+            // }
 
-            if (b.conditions.water_visibility) {
+            // if (b.conditions.water_visibility) {
 
-            }
+            // }
 
             
             
