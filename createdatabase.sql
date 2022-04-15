@@ -21,6 +21,11 @@ CREATE DATABASE `group8`;
 USE `group8`;
 
 
+DROP TABLE IF EXISTS `flies_used`;
+DROP TABLE IF EXISTS `fish_caught`;
+DROP TABLE IF EXISTS `insects_caught`;
+DROP TABLE IF EXISTS `user_statistics`;
+DROP TABLE IF EXISTS `conditions`;
 DROP TABLE IF EXISTS `user_groups`;
 DROP TABLE IF EXISTS `entry_groups`;
 DROP TABLE IF EXISTS `location_profiles`;
@@ -139,6 +144,32 @@ CREATE TABLE `conditions` (
 	FOREIGN KEY (`entry_id`) REFERENCES `entries`(`entry_id`) ON DELETE CASCADE
 );
 
+CREATE TABLE `insects_caught` (
+  `entry_id` varchar(14) NOT NULL UNIQUE,
+  `insect_type` varchar(50),
+  `fly` varchar(50),
+  PRIMARY KEY (`entry_id`, `insect_type`),
+  FOREIGN KEY (`entry_id`) REFERENCES `entries`(`entry_id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `flies_used` (
+  `entry_id` varchar(14) NOT NULL UNIQUE,
+  `fly_type` varchar(50),
+  `success` int,
+  PRIMARY KEY (`entry_id`, `fly_type`),
+  FOREIGN KEY (`entry_id`) REFERENCES `entries`(`entry_id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `fish_caught` (
+  `entry_id` varchar(14) NOT NULL UNIQUE,
+  `fly_type` varchar(50) NOT NULL,
+  `fish_size` varchar(50),
+  `fish_type` varchar(50),
+  `weight` varchar(50),
+  PRIMARY KEY (`entry_id`, `fly_type`),
+  FOREIGN KEY (`entry_id`) REFERENCES `entries`(`entry_id`) ON DELETE CASCADE
+);
+
 -- Add Users
 insert into `users`(`user_id`, `email`, `username`, `password`) values
 	('tMYWeQDP-', 'user1@gmail.com', 'user1', '101010'),
@@ -167,6 +198,15 @@ insert into `entries`(`entry_id`, `location`, `date`, `private_flag`, `user_id`,
 
 insert into `entries`(`entry_id`, `location`, `date`, `private_flag`, `user_id`, `admin_id`, `public_flag`) values 
 	('5Ox7OjhHJ', 'Bow River', '1649950868', '1', 'tMYWeQDP-', 'keVTJhRTV', '0');
+
+insert into `conditions`(`entry_id`, `water_flow`, `water_visibility`) values
+	('5Ox7OjhHJ', 'low flow', 'low visibility');
+
+insert into `flies_used`(`entry_id`, `fly_type`, `success`) values
+	('5Ox7OjhHJ', 'flytype1', 1);
+
+insert into `fish_caught`(`entry_id`, `fly_type`, `fish_size`, `fish_type`) values
+	('5Ox7OjhHJ', 'flytype1', 'big', 'salmon');
 
 -- user yqQ01F11Y can access entry 5Ox7OjhHJ
 insert into `entry_groups`(`entry_id`, `group_id`) values 

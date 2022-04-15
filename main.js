@@ -28,25 +28,29 @@ const location = require('./routes/location');
 const group = require('./routes/group')
 
 app.use(express.json());
-app.get('/entry/search', entry.searchEntries)
-app.get('/entry/:id', entry.checkAuth)
-app.post('/entry', entry.createEntry)
+
+// Entry basics
+app.get('/entry/search', entry.searchEntries)   // need to update
+app.get('/entry/:id', entry.fetchEntryInfo)
+app.post('/entry', entry.createEntry)   // need to update to add conditions, insects_caught, flies_used, figh_caught, pictures_entry
 app.post('/entry/review/:id', entry.createReview)
 //app.put('/entry/:id', entry.updateEntry),
 app.delete('/entry/:id', entry.deleteEntry)
 app.delete('/entry/review/:id', entry.deleteReview)
+
+// Entry advanced
+app.put('/entry')
 
 app.get('/user/login/:username', user.checkCredentials)   // returns user_id to be used in subsequent queries
 app.get('/user/:id', user.getUserInfo)
 //app.get('/user/statistics/:id', user.getStatistics)
 app.put('/user/:id', user.updateEmail)
 
-// Name of location profile will be passed in the body instead
-app.get('/locationprofile', location.getProfile)
+// Name of location profile will be passed in the body
+app.get('/locationprofile', location.getProfile)    // update to add types_fish, hatches
 app.post('/locationprofile', location.createProfile)
-//app.put('/locationprofile', location.updateProfile)
-//app.delete('/locationprofile', location.deleteProfile)
-
+app.put('/locationprofile/regulations', location.updateRegulations)
+app.delete('/locationprofile', location.deleteProfile)
 
 app.get('/group/:id', group.getGroupInfo)
 app.post('/group', group.createGroup)

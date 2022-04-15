@@ -6,7 +6,7 @@ var shortid = require('shortid');
 
 const EntryRoute = {
 
-    async checkAuth(req, res, next) {
+    async fetchEntryInfo(req, res, next) {
         const q = req.query;
         const p =  req.params;
         const b = req.body;
@@ -16,19 +16,47 @@ const EntryRoute = {
         if (!p || !b.requestor_id) res.status(500).send('Invalid request.')
         else {
             const qString = `SELECT * FROM entries WHERE entry_id = ${mysql.escape(p.id)}`
-            const results = await db.query(qString).catch(err => {throw err})
+            const results = await db.query(qString).catch(err => {console.log(err)})
             if (!results) res.status(404).send('Entry does not exist.')
             else {
-                if (results.private_flag == 1) {
-                    res.status(404).send('Entry does not exist.')
-
-
+                if (results.private_flag == 1 && b.requestor_id != results.user_id) {
+                    res.status(404).send('Unauthorized.')
+                    return;
                 }
-                if (b.requestor_id == results.user_id || b.requestor_id == results.admin_id) {
-                    res.status(404).send('Entry does not exist.')
-
+                if (results.public_flag == 1 || b.requestor_id == results.admin_id) {
+                    res.status(404).send('Unauthorized.')
+                    return;
                 }
-                res.status(200).send(results)
+                // get conditions
+
+                var conditionsQuery = 'select * from `conditions` where `entry_id` = ' + mysql.escape(p.id)
+                const conditions = await db.query(conditionsQuery).catch(err => {console.log(err)})
+                if (conditions) {
+                    results.push(conditions[0])
+                }
+
+                var insectsQuery = 'select * from `insects_caught` where `entry_id` = ' + mysql.escape(p.id)
+                const insects = await db.query(insectsQuery).catch(err => {console.log(err)})
+                if (insects) {
+                    results.push(insects[0])
+                }
+
+                var fliesQuery = 'select * from `flies_used` where `entry_id` = ' + mysql.escape(p.id)
+                const flies = await db.query(fliesQuery).catch(err => {console.log(err)})
+                if (flies) {
+                    results.push(flies[0])
+                }
+
+                var fishQuery = 'select * from `fish_caught` where `entry_id` = ' + mysql.escape(p.id) 
+                    // + ' and `fly_type` = ' + mysql.escape(flies.fly_type)
+                    // ^ not sure if we really need this FK constraint
+                const fish = await db.query(fishQuery).catch(err => {console.log(err)})
+                if (fish[0]) {
+                    console.log(fish)
+                    results[results.length] = fish[0]
+                }
+
+                res.status(200).send(Object.assign(...results))
             }
         }
     },
@@ -37,14 +65,14 @@ const EntryRoute = {
         const q = req.query;
         const p = req.params;
         const b = req.body;
-        // check if entry exists
+        // check if entry exists in public entries, or in users own private entries
 
         console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${JSON.stringify(b)}`);
         if (!b.requestor_id) res.status(500).send('Invalid request.')
         else {
-            var qString = `SELECT * FROM entries WHERE public_flag = 1`
+            var qString = `SELECT * FROM entries WHERE `
             if (b.location) {
-                qString = qString + ` AND location = ${mysql.escape(b.location)}`
+                qString = qString + `location = ${mysql.escape(b.location)}`
             }
             if (b.date) {
                 unixms = parseInt(b.date) * 1000
@@ -55,8 +83,16 @@ const EntryRoute = {
                 console.log(dayjs(b.date).startOf('day'))
                 qString = qString + ` AND date < ${mysql.escape(maxdate)} AND date > ${mysql.escape(mindate)}`
             }
-
             console.log(qString)
+
+            // var conditionsQuery = ''
+            // if (b.conditions.water_flow) {
+            //     qString = qString + `location = ${mysql.escape(b.conditions.water_flow)}`
+            // }
+
+            // if (b.conditions.water_visibility) {
+
+            // }
 
             const results = await db.query(qString).catch(err => {throw err})
             

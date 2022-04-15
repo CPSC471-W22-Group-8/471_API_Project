@@ -55,6 +55,59 @@ const LocationRoute = {
             }
         }
     },
+
+    async updateRegulations(req, res, next) {
+        const q = req.query;
+        const p = req.params;
+        const b = req.body;
+
+        console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${JSON.stringify(b)}`);
+        if (!b.name || !b.requestor_id || !b.regulations) res.status(500).send('Invalid request.')
+        else {
+            const qString = 'SELECT * FROM `location_profiles` WHERE `name` = ' + mysql.escape(b.name) + 
+                ' and `admin_id` = ' + mysql.escape(b.requestor_id)
+            const results = await db.query(qString).catch(err => {throw err})
+            if (!results) res.status(404).send('Unauthorized')
+            else {
+                if (results[0].name) {
+                    const qString = 'update `location_profiles` set `regulations` = ' + mysql.escape(b.regulations)
+                    ' WHERE `name` = ' + mysql.escape(b.name) +
+                        ' and `admin_id` = ' + mysql.escape(b.requestor_id)
+                    const results = await db.query(qString)
+                    res.status(200).send(JSON.stringify(results))
+                }
+                else {
+                    res.status(404).send('Invalid request.')
+                }
+            }
+        }
+    },
+
+    async deleteProfile(req, res, next) {
+        const q = req.query;
+        const p = req.params;
+        const b = req.body;
+
+        console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${JSON.stringify(b)}`);
+        if (!b.name || !b.requestor_id) res.status(500).send('Invalid request.')
+        else {
+            const qString = 'SELECT * FROM `location_profiles` WHERE `name` = ' + mysql.escape(b.name) +
+                ' and `admin_id` = ' + mysql.escape(b.requestor_id)
+            const results = await db.query(qString).catch(err => {throw err})
+            if (!results) res.status(404).send('Unauthorized')
+            else {
+                if (results[0].name) {
+                    const qString = 'delete from `location_profiles` WHERE `name` = ' + mysql.escape(b.name) +
+                        ' and `admin_id` = ' + mysql.escape(b.requestor_id)
+                    const results = await db.query(qString)
+                    res.status(200).send(JSON.stringify(results))
+                }
+                else {
+                    res.status(404).send('Invalid request.')
+                }
+            }
+        }
+    },
 }
 
 module.exports = LocationRoute
