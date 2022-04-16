@@ -197,6 +197,9 @@ insert into `entries`(`entry_id`, `location`, `date`, `private_flag`, `user_id`,
 	('9ZKDVWzCf', 'Bow River', '1649950868', '0', 'tMYWeQDP-', 'keVTJhRTV', '1');
 
 insert into `entries`(`entry_id`, `location`, `date`, `private_flag`, `user_id`, `admin_id`, `public_flag`) values 
+	('xZKDVW333', 'Bow River', '1649950868', '0', 'yqQ01F11Y', 'keVTJhRTV', '0');
+
+insert into `entries`(`entry_id`, `location`, `date`, `private_flag`, `user_id`, `admin_id`, `public_flag`) values 
 	('5Ox7OjhHJ', 'Bow River', '1649950868', '1', 'tMYWeQDP-', 'keVTJhRTV', '0');
 
 insert into `conditions`(`entry_id`, `water_flow`, `water_visibility`) values

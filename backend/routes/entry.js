@@ -68,43 +68,101 @@ const EntryRoute = {
         // check if entry exists in public entries, or in users own private entries
 
         console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${JSON.stringify(b)}`);
+        var results;
         if (!b.requestor_id) res.status(500).send('Invalid request.')
+        
         else {
-            var qString = `SELECT * FROM entries WHERE `
-            if (b.location) {
-                qString = qString + `location = ${mysql.escape(b.location)}`
+            
+            var extraresults;
+            var onlyentrytable = true;
+            if (b.success) {
+                if (parseInt(b.success) === 1) {
+                    var flies_used_query = 'select `entry_id` from `flies_used` where `success` = 1'
+                    const flies_results = await db.query(flies_used_query).catch(err => {console.log(err)})
+                    if (flies_results) {
+                        onlyentrytable = false;
+                        flies_results.map(result => result.entry_id)
+                        extraresults = flies_results
+                    }
+                    console.log(JSON.stringify(flies_results))
+                    console.log(JSON.stringify(extraresults))
+                }
+                if (parseInt(b.success) === 0) {
+                    var flies_used_query = 'select `entry_id` from `flies_used` where `success` = 0'
+                    const flies_results = await db.query(flies_used_query).catch(err => {console.log(err)})
+                    if (flies_results) {
+                        onlyentrytable = false;
+                        flies_results.map(result => result.entry_id)
+                        extraresults = flies_results
+                    }
+                    console.log(JSON.stringify(flies_results))
+                    console.log(JSON.stringify(extraresults))
+                }
+                
+                
             }
-            if (b.date) {
-                unixms = parseInt(b.date) * 1000
-                day = dayjs(unixms)
-                mindate = day.startOf('day').unix()
-                maxdate = day.endOf('day').unix()
-                qString = qString + ` AND date < ${mysql.escape(maxdate)} AND date > ${mysql.escape(mindate)}`
+
+            var moreentries;
+            if (onlyentrytable) {
+                var qString = `SELECT * FROM entries WHERE ` + '(`public_flag` = 1 or `user_id` = ' + mysql.escape(b.requestor_id) + ')'
+                if (b.location) {
+                    qString = qString + ` and location = ${mysql.escape(b.location)}`
+                }
+                if (b.date) {
+                    unixms = parseInt(b.date) * 1000
+                    day = dayjs(unixms)
+                    mindate = day.startOf('day').unix()
+                    maxdate = day.endOf('day').unix()
+                    qString = qString + ` AND date < ${mysql.escape(maxdate)} AND date > ${mysql.escape(mindate)}`
+                }
+
+                console.log(qString)
+                results = await db.query(qString).catch(err => {console.log(err)})
             }
             
-            console.log(qString)
-            const results = await db.query(qString).catch(err => {throw err})
+            else {
+                //console.log(extraresults)
+                moreentries = await Promise.all(extraresults.map(entry => {
+                    var qString = `SELECT * FROM entries WHERE ` + '`entry_id` = ' + mysql.escape(entry.entry_id)
+                    ' and (`public_flag` = 1 or `user_id` = ' + mysql.escape(b.requestor_id) + ')'
+                    if (b.location) {
+                        qString = qString + ` and location = ${mysql.escape(b.location)}`
+                    }
+                    if (b.date) {
+                        unixms = parseInt(b.date) * 1000
+                        day = dayjs(unixms)
+                        mindate = day.startOf('day').unix()
+                        maxdate = day.endOf('day').unix()
+                        qString = qString + ` AND date < ${mysql.escape(maxdate)} AND date > ${mysql.escape(mindate)}`
+                    }
 
-           /* if (b.success) {
-                var flies_used_query = 'select `entry_id` from `flies_used` where `success` = 1'
-                const flies_results = await db.query(qString).catch(err => {throw err})
-                flies
+                    console.log(qString)
+                    return db.query(qString).catch(err => {console.log(err)})
+                }))
+                console.log(moreentries)
             }
+            
 
-            if (b.conditions.water_visibility) {
 
-            }*/
+
+            // if (b.conditions.water_visibility) {
+
+            // }
 
             
             
-            if (!results) res.status(200).send([])
+            if (!results && !moreentries) res.status(200).send([])
+            else if (moreentries && !results) {
+                res.status(200).send(...moreentries)
+                return
+            }
             else {
                 results.forEach(result => {
                     if (b.requestor_id != result.user_id && b.requestor_id != result.admin_id) {
                         // remove result if user doesn't have permission
                         result = null;
+                        console.log('removing : ' + result)
                     }
-
                 })
 
                 res.status(200).send(results)
@@ -121,7 +179,7 @@ const EntryRoute = {
         if (!b.requestor_id) res.status(500).send('Invalid request.')
         else {
             // get an admin id
-            const adminids = await db.query('select `admin_id` from `admins`').catch(err => {throw err})
+            const adminids = await db.query('select `admin_id` from `admins`').catch(err => {console.log(err)})
             console.log(adminids)
             admin =  adminids[Math.floor(Math.random() * adminids.length)].admin_id;
             
@@ -140,7 +198,7 @@ const EntryRoute = {
 
             console.log(qString)
 
-            const results = await db.query(qString).catch(err => {throw err})
+            const results = await db.query(qString).catch(err => {console.log(err)})
 
             if (!results) res.status(200).send([])
             else {
@@ -161,7 +219,7 @@ const EntryRoute = {
             const entryid = p.id
             const rating = q.rating
             // get entry
-            const entry = await db.query('select * from `entries` where `entry_id` = ' + mysql.escape(entryid)).catch(err => {throw err})
+            const entry = await db.query('select * from `entries` where `entry_id` = ' + mysql.escape(entryid)).catch(err => {console.log(err)})
 
 
 
@@ -199,7 +257,7 @@ const EntryRoute = {
 
             console.log(qString)
 
-            const results = await db.query(qString).catch(err => {throw err})
+            const results = await db.query(qString).catch(err => {console.log(err)})
 
             if (!results) res.status(200).send([])
             else {
@@ -219,11 +277,11 @@ const EntryRoute = {
             const entryid = p.id
             // get entry
             const review = await db.query('select * from `reviews` where `entry_id` = ' + mysql.escape(entryid) +
-                ' and `user_id` = ' + mysql.escape(q.userid)).catch(err => {throw err})
+                ' and `user_id` = ' + mysql.escape(q.userid)).catch(err => {console.log(err)})
             console.log(review.sql)
             
             const entry = await db.query('select * from `entries` where `entry_id` = ' + mysql.escape(entryid) +
-                ' and `user_id` = ' + mysql.escape(q.userid)).catch(err => {throw err})
+                ' and `user_id` = ' + mysql.escape(q.userid)).catch(err => {console.log(err)})
 
 
             if ((!review[0] || !entry[0]) || (b.requestor_id != review[0].user_id && b.requestor_id != entry[0].admin_id )) {
@@ -236,7 +294,7 @@ const EntryRoute = {
 
             console.log(qString)
 
-            const results = await db.query(qString).catch(err => {throw err})
+            const results = await db.query(qString).catch(err => {console.log(err)})
 
             if (!results) res.status(200).send([])
             else {
@@ -256,7 +314,7 @@ const EntryRoute = {
             const entryid = p.id
 
             const entry = await db.query('select * from `entries` where `entry_id` = ' + mysql.escape(entryid) +
-                ' and `user_id` = ' + mysql.escape(b.requestor_id)).catch(err => {throw err})
+                ' and `user_id` = ' + mysql.escape(b.requestor_id)).catch(err => {console.log(err)})
 
 
             if (!entry[0] || b.requestor_id != entry[0].user_id) {
@@ -269,7 +327,7 @@ const EntryRoute = {
 
             console.log(qString)
 
-            const results = await db.query(qString).catch(err => {throw err})
+            const results = await db.query(qString).catch(err => {console.log(err)})
 
             if (!results) res.status(200).send([])
             else {
