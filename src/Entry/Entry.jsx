@@ -11,10 +11,12 @@ import ViewTable2 from "./ViewTable2";
 const Entry = () => {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
-    entry_Id: "",
+    admin_id: "",
+    entry_id: "",
     location: "",
     date: "",
     public_flag: "",
+    private_flag: "",
     insect_type: "",
     fly: "",
     fly_type: "",
@@ -32,7 +34,7 @@ const Entry = () => {
   });
 
   const [editFormData, setEditFormData] = useState({
-    entry_Id: "",
+    entry_id: "",
     location: "",
     date: "",
     public_flag: "",
@@ -78,37 +80,51 @@ const Entry = () => {
   };
 
   const handleSearchFormSubmit = (event) => {
-    //event.preventDefault();
+    event.preventDefault();
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
+    var raw = JSON.stringify({
+    "requestor_id": "tMYWeQDP-",
+    "location": addFormData.location,
+    //"private_flag": 0,
+    //"public_flag": 1,
+    "date": addFormData.date,
+    //"insect_type": addFormData.insect_type,
+    //"fly": addFormData.fly,
+    //"fly_type": addFormData.fly_type,
+    //"success": addFormData.success,
+    //"fish_type": addFormData.fish_type,
+    //"fish_size": addFormData.fish_size,
+    //"fish_weight": addFormData.fish_weight,
+    //"water_flow": addFormData.water_flow,
+    //"water_visibility": addFormData.water_visibility,
+    //"wind": addFormData.wind,
+    //"sky": addFormData.sky,
+    //"temperature": addFormData.temperature
+    });
 
-    // Ryan version of fetch*****************************************************************
-    const newContact = {
-        "requestor_id": "tMYWeQDP-",
-        location: addFormData.location,
-        date: addFormData.date,
-        insect_type: addFormData.insectCaught,
-        fly_type: addFormData.flyUsed,
-        success: addFormData.success,
-        fish_type: addFormData.fishCaught,
-      };
-      //send newContact as JSON
-      search(newContact);
-      // or resContacts = search(newContact)
-      // setContacts(resContacts);
-      const form = document.getElementById('search');
-      form.reset();
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
     };
+
+    fetch("http://localhost:5000/entry/search", requestOptions)
+    .then(function(response){
+        if (response.ok){
+            //setContacts(test)
+            setContacts(response.json())
+        }
+        else{
+            alert('Search unsuccessfull!')
+        }
+    })
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
   
-    const search = (query) => {
-      const requestOptions = {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(query),
-          redirect: 'follow'
-      }
-      fetch('http://localhost:5000/entry/search', {requestOptions})    //or ?s={query}
-      .then(res => res.json())
-      setContacts(test);
       
     };
   

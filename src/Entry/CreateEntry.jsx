@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 
 import data from "./sample-table-data.json";
 
 
 const CreateEntry = () => {
+  let navigate = useNavigate();
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     entry_Id: "",
@@ -48,9 +50,22 @@ const CreateEntry = () => {
 
     var raw = JSON.stringify({
     "requestor_id": "tMYWeQDP-",
-    "location": "Lake Louise",
-    "private_flag": 1,
-    "public_flag": 0
+    "location": addFormData.location,
+    "private_flag": 0,
+    "public_flag": 1,
+    "date": addFormData.date,
+    //"insect_type": addFormData.insect_type,
+    //"fly": addFormData.fly,
+    //"fly_type": addFormData.fly_type,
+    //"success": addFormData.success,
+    //"fish_type": addFormData.fish_type,
+    //"fish_size": addFormData.fish_size,
+    //"fish_weight": addFormData.fish_weight,
+    //"water_flow": addFormData.water_flow,
+    //"water_visibility": addFormData.water_visibility,
+    //"wind": addFormData.wind,
+    //"sky": addFormData.sky,
+    //"temperature": addFormData.temperature
     });
 
     var requestOptions = {
@@ -60,8 +75,16 @@ const CreateEntry = () => {
     redirect: 'follow'
     };
 
-    fetch("http://localhost:5000/entry", {requestOptions})
-    .then(response => response.text())
+    fetch("http://localhost:5000/entry", requestOptions)
+    .then(function(response){
+        if (response.ok){
+            alert('Entry Created!')
+            navigate('/user/userpage')
+        }
+        else{
+            alert('Entry not created!')
+        }
+    })
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
     

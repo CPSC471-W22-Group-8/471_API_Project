@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
 
 
@@ -6,16 +7,16 @@ import Axios from 'axios';
 function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    let navigate = useNavigate();
+    
     const login = () => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        var user = username;
         var raw = JSON.stringify({
-        "password": "101010"
+        "password": password
         });
-
-        const data = {password: "101010"}
 
         var requestOptions = {
         method: 'POST',
@@ -24,10 +25,21 @@ function LoginForm() {
         redirect: 'follow'
         };
 
-        fetch("http://localhost:5000/user/login/user1", requestOptions)
-        .then(response => response.text())
+        fetch(`http://localhost:5000/user/login/${user}`, requestOptions)
+        .then(function(response){
+            if (response.ok){
+                alert('Login Successfull!')
+                navigate('/user/userpage')
+            }
+            else{
+                alert('Login Unsuccessfull!')
+            }
+        })
+        
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
+
+
 
         // fetch('http://localhost:5000/user/login/user1', {
         //     method: "POST",
