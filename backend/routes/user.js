@@ -35,16 +35,17 @@ const EntryRoute = {
         if (!p.id || !b.requestor_id) res.status(500).send('Invalid request.')
         else {
             const qString = 'SELECT * FROM `users` WHERE `user_id` = ' + mysql.escape(p.id)
-            const results = await db.query(qString).catch(err => {throw err})
-            if (!results) {
+            const results = await db.query(qString).catch(err => {console.log(err)})
+            if (!results || !results[0]) {
                 res.status(404).send('Unauthorized')
+                return;
             }
             else if (results[0].user_id != b.requestor_id) {
                 res.status(404).send('Unauthorized')
+                return;
             }
             else {
                 res.status(200).send(results[0])
-            
             }
         }
     },
@@ -59,17 +60,19 @@ const EntryRoute = {
         if (!p.id || !b.requestor_id || !b.email) res.status(500).send('Invalid request.')
         else {
             const qString = 'SELECT * FROM `users` WHERE `user_id` = ' + mysql.escape(p.id)
-            const results = await db.query(qString).catch(err => {throw err})
-            if (!results) {
+            const results = await db.query(qString).catch(err => {console.log(err)})
+            if (!results || !results[0]) {
                 res.status(404).send('Unauthorized')
+                return;
             }
             else if (results[0].user_id != b.requestor_id) {
                 res.status(404).send('Unauthorized')
+                return;
             }
             else {
                 const qString = 'update `users` set `email` = ' + mysql.escape(b.email) +
                     ' WHERE `user_id` = ' + mysql.escape(p.id)
-                const results = await db.query(qString).catch(err => {throw err})
+                const results = await db.query(qString).catch(err => {console.log(err)})
                 res.status(200).send(results)
 
             }
