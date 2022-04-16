@@ -74,9 +74,6 @@ app.post('/entry/review/:id', entry.createReview)
 app.delete('/entry/:id', entry.deleteEntry)
 app.delete('/entry/review/:id', entry.deleteReview)
 
-// Entry advanced
-app.put('/entry')
-
 app.get('/user/login/:username', user.checkCredentials)   // returns user_id to be used in subsequent queries
 app.post('/user/login/:username', user.checkCredentials)    // FOR API
 app.get('/user/:id', user.getUserInfo)
