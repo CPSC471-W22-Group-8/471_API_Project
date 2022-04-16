@@ -66,11 +66,19 @@ app.use(function (req, res, next) {
 // data can be passed in through the body of the http request, which get requests outside of postman don't allow
 
 // Entry basics
+<<<<<<< HEAD
+app.get('/entry/search', entry.searchEntries)   // need to update
+app.post('/entry/search', entry.searchEntries)   // FOR API
+app.get('/entry/:id', entry.fetchEntryInfo)
+app.get('/entry/data/:id', entry.fetchEntryInfo) // FOR API
+app.post('/entry', entry.createEntry)   // need to update to add conditions, insects_caught, flies_used, figh_caught, pictures_entry
+=======
 app.get('/entry/search', entry.searchEntries)   // can update to add more params
 app.post('/entry/search', entry.searchEntries)   // FOR API
 app.get('/entry/:id', entry.fetchEntryInfo)
 app.get('/entry/data/:id', entry.fetchEntryInfo) // FOR API
 app.post('/entry', entry.createEntry)   // can update to add conditions, insects_caught, flies_used, figh_caught, pictures_entry
+>>>>>>> aef71178701def8deb0f7924836bdfdd414f5a6c
 app.post('/entry/review/:id', entry.createReview)
 //app.put('/entry/:id', entry.updateEntry),
 app.delete('/entry/:id', entry.deleteEntry)
@@ -84,9 +92,15 @@ app.post('/user/:id', user.getUserInfo) // FOR API
 app.put('/user/:id', user.updateEmail)
 
 // Name of location profile will be passed in the body
+<<<<<<< HEAD
+app.get('/locationprofile', location.getProfile)    // update to add types_fish, hatches
+app.post('/locationprofile/data', location.getProfile)   // FOR API
+app.post('/locationprofile', location.createProfile)    // create profile (postman using)
+=======
 app.get('/locationprofile', location.getProfile)    // can update to add types_fish, hatches
 app.post('/locationprofile/data', location.getProfile)   // FOR API
 app.post('/locationprofile', location.createProfile)    // create profile (postman)
+>>>>>>> aef71178701def8deb0f7924836bdfdd414f5a6c
 app.post('/locationprofile/create', location.createProfile)    // create profile (FOR API)
 app.put('/locationprofile/regulations', location.updateRegulations)
 app.delete('/locationprofile', location.deleteProfile)
