@@ -1,3 +1,5 @@
+// from: https://medium.com/fullstackwebdev/a-guide-to-mysql-with-node-js-fc4f6abce33b
+
 const mysql = require("mysql");
 const util = require("util");
 var connection;
