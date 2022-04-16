@@ -9,7 +9,6 @@ const EntryRoute = {
         const b = req.body;
         // check if entry exists
 
-        console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${req.body}`);
         console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${JSON.stringify(b)}`);
         if (!p.username || !b.password) res.status(500).send('Invalid request.')
         else {

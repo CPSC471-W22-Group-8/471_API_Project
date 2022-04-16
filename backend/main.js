@@ -76,7 +76,7 @@ app.delete('/entry/review/:id', entry.deleteReview)
 app.put('/entry')
 
 app.get('/user/login/:username', user.checkCredentials)   // returns user_id to be used in subsequent queries
-app.post('/user/login/:username', user.checkCredentials)
+app.post('/user/login/:username', user.checkCredentials)    // FOR API: returns user_id to be used in subsequent queries
 app.get('/user/:id', user.getUserInfo)
 //app.get('/user/statistics/:id', user.getStatistics)
 app.put('/user/:id', user.updateEmail)
