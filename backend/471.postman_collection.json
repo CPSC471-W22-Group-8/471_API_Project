@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "entry",
+			"name": "search entries",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -37,7 +37,38 @@
 			"response": []
 		},
 		{
-			"name": "localhost:5000/entry",
+			"name": "get entry",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\": \"tMYWeQDP-\",\n\"date\": \"1649950868\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/entry/search",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"entry",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post new entry",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -64,7 +95,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:5000/entry/review/5Ox7OjhHJ?rating=8",
+			"name": "post review for entry",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -99,7 +130,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:5000/entry/review/5Ox7OjhHJ?userid=yqQ01F11Y",
+			"name": "delete review for entry",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -196,6 +227,96 @@
 			"response": []
 		},
 		{
+			"name": "update email",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\": \"2_C76miq0\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/user/2_C76miq0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"2_C76miq0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"requestor_id\": \"2_C76miq0\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/user/2_C76miq0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"2_C76miq0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update location profile regulations",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Lake Louise\",\n\"requestor_id\": \"keVTJhRTV\",\n\"regulations\": \"some updated regulations\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/locationprofile/regulations",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"locationprofile",
+						"regulations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "add location profile",
 			"request": {
 				"method": "POST",
@@ -203,6 +324,33 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\"name\": \"Sylvan Lake\",\n\"admin_id\": \"PPMf56O3x\",\n\"regulations\": \"some regulations\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/locationprofile",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"locationprofile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete location profile",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Lake Louise\",\n\"requestor_id\": \"keVTJhRTV\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -368,7 +516,7 @@
 			"response": []
 		},
 		{
-			"name": "get user info",
+			"name": "search entries with success and date",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -377,7 +525,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"requestor_id\": \"2_C76miq0\"}",
+					"raw": "{\"requestor_id\": \"yqQ01F11Y\",\n\"date\": \"1649950868\",\n\"success\" : \"1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -385,21 +533,21 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5000/user/2_C76miq0",
+					"raw": "localhost:5000/entry/search",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
-						"user",
-						"2_C76miq0"
+						"entry",
+						"search"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "update email",
+			"name": "search entries with success",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -408,7 +556,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"requestor_id\": \"2_C76miq0\"}",
+					"raw": "{\"requestor_id\": \"yqQ01F11Y\",\n\"date\": \"1649950868\",\n\"success\" : \"1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -416,14 +564,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5000/user/2_C76miq0",
+					"raw": "localhost:5000/entry/search",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
-						"user",
-						"2_C76miq0"
+						"entry",
+						"search"
 					]
 				}
 			},
