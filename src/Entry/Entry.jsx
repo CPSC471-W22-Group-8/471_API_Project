@@ -11,44 +11,44 @@ import ViewTable2 from "./ViewTable2";
 const Entry = () => {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
-    entryId: "",
+    entry_Id: "",
     location: "",
     date: "",
-    public: "",
-    insectCaught: "",
+    public_flag: "",
+    insect_type: "",
     fly: "",
-    flyUsed: "",
+    fly_type: "",
     success: "",
-    fishCaught: "",
-    fishSize: "",
-    fishWeight: "",
-    waterVisibility: "",
-    waterFlow: "",
+    fish_type: "",
+    fish_size: "",
+    weight: "",
+    water_visibility: "",
+    water_flow: "",
     wind: "",
     sky: "",
-    temperature: "",
-    picture: ""
+    temperature: ""
+    //picture: ""
 
   });
 
   const [editFormData, setEditFormData] = useState({
-    entryId: "",
+    entry_Id: "",
     location: "",
     date: "",
-    public: "",
-    insectCaught: "",
+    public_flag: "",
+    insect_type: "",
     fly: "",
-    flyUsed: "",
+    fly_type: "",
     success: "",
-    fishCaught: "",
-    fishSize: "",
-    fishWeight: "",
-    waterVisibility: "",
-    waterFlow: "",
+    fish_type: "",
+    fish_size: "",
+    weight: "",
+    water_visibility: "",
+    water_flow: "",
     wind: "",
     sky: "",
-    temperature: "",
-    picture: ""
+    temperature: ""
+    //picture: ""
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -78,36 +78,96 @@ const Entry = () => {
   };
 
   const handleSearchFormSubmit = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
 
+
+    // Ryan version of fetch*****************************************************************
     const newContact = {
-      id: nanoid(),
-      location: addFormData.location,
-      date: addFormData.date,
-      insectCaught: addFormData.insectCaught,
-      flyUsed: addFormData.flyUsed,
-      success: addFormData.success,
-      fishCaught: addFormData.fishCaught,
+        "requestor_id": "tMYWeQDP-",
+        location: addFormData.location,
+        date: addFormData.date,
+        insect_type: addFormData.insectCaught,
+        fly_type: addFormData.flyUsed,
+        success: addFormData.success,
+        fish_type: addFormData.fishCaught,
+      };
+      //send newContact as JSON
+      search(newContact);
+      // or resContacts = search(newContact)
+      // setContacts(resContacts);
+      const form = document.getElementById('search');
+      form.reset();
     };
-    //send newContact as JSON
-    search(newContact);
-    // or resContacts = search(newContact)
-    // setContacts(resContacts);
-    const form = document.getElementById('search');
-    form.reset();
-  };
+  
+    const search = (query) => {
+      const requestOptions = {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(query),
+          redirect: 'follow'
+      }
+      fetch('http://localhost:5000/entry/search', {requestOptions})    //or ?s={query}
+      .then(res => res.json())
+      setContacts(test);
+      
+    };
+  
 
-  const search = (query) => {
-    const requestOptions = {
-        method: 'GET',
-        header: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(query)
-    }
-    fetch('http://localhost:5000/entry/search', {requestOptions})    //or ?s={query}
-    .then(res => res.json())
-    setContacts(test);
+
+    /* axios version from postman******************************
+    var axios = require('axios');
+    var data = JSON.stringify({
+    "requestor_id": "tMYWeQDP-",
+    "date": "1649950868",
+    "location": "Bow River"
+    });
+
+    var config = {
+    method: 'get',
+    url: 'http://localhost:5000/entry/search',
+    headers: { 
+        'Content-Type': 'application/json'
+    },
+    data : data
+    };
+
+    axios(config)
+    .then(function (response) {
+    console.log(JSON.stringify(response.data));
+    setContacts(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+    console.log(error);
+    });***********************************************************/
     
-  };
+    
+    /* fetch version from postman**********************************
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "requestor_id": "tMYWeQDP-",
+        "date": "1649950868",
+        "location": "Bow River"
+      });
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+      
+      fetch("localhost:5000/entry/search", requestOptions)
+        .then(response => response.text())
+        .then(result => setContacts(result))
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+  
+      *************************************************************/
+    //setContacts(test);
+    
+
 
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
@@ -116,20 +176,20 @@ const Entry = () => {
       id: editContactId,
       location: editFormData.location,
       date: editFormData.date,
-      public: editFormData.public,
-      insectCaught: editFormData.insectCaught,
+      public_flag: editFormData.public_flag,
+      insect_type: editFormData.insect_type,
       fly: editFormData.fly,
-      flyUsed: editFormData.flyUsed,
+      fly_type: editFormData.fly_type,
       success: editFormData.success,
-      fishCaught: editFormData.fishCaught,
-      fishSize: editFormData.fishSize,
-      fishWeight: editFormData.fishWeight,
-      waterFlow: editFormData.waterFlow,
-      waterVisibility: editFormData.waterVisibility,
+      fish_type: editFormData.fish_type,
+      fish_size: editFormData.fish_size,
+      weight: editFormData.weight,
+      water_flow: editFormData.water_flow,
+      water_visibility: editFormData.water_visibility,
       wind: editFormData.wind,
       sky: editFormData.sky,
-      temperature: editFormData.temperature,
-      picture: editFormData.picture,
+      temperature: editFormData.temperature
+      //picture: editFormData.picture,
     };
 
     const newContacts = [...contacts];
@@ -149,20 +209,20 @@ const Entry = () => {
     const formValues = {
     location: contact.location,
     date: contact.date,
-    public: contact.public,
-    insectCaught: contact.insectCaught,
+    public_flag: contact.public_flag,
+    insect_type: contact.insect_type,
     fly: contact.fly,
-    flyUsed: contact.flyUsed,
+    fly_type: contact.fly_type,
     success: contact.success,
-    fishCaught: contact.flishCaught,
-    fishSize: contact.fishSize,
-    fishWeight: contact.fishWeight,
-    waterFlow: contact.waterFlow,
-    waterVisibility: contact.waterVisibility,
+    fish_type: contact.flishCaught,
+    fish_size: contact.fish_size,
+    weight: contact.weight,
+    water_flow: contact.water_flow,
+    water_visibility: contact.water_visibility,
     wind: contact.wind,
     sky: contact.sky,
-    temperature: contact.temperature,
-    picture: contact.picture
+    temperature: contact.temperature
+    //picture: contact.picture
     };
 
     setEditFormData(formValues);
@@ -200,7 +260,6 @@ const Entry = () => {
               <th>Fish Caught</th>
               <th>Fish Size</th>
               <th>Fish Weight</th>
-              <th>Picture</th>
             </tr>
           </thead>
           <tbody>
@@ -275,13 +334,13 @@ const Entry = () => {
         />
         <input
           type="text"
-          name="insectCaught"
+          name="insect_type"
           placeholder="Enter insect caught"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
-          name="flyUsed"
+          name="fly_type"
           placeholder="Enter fly used"
           onChange={handleAddFormChange}
         />
@@ -293,7 +352,7 @@ const Entry = () => {
         />
         <input
           type="text"
-          name="fishCaught"
+          name="fish_type"
           placeholder="Enter fish caught"
           onChange={handleAddFormChange}
         />
@@ -301,7 +360,7 @@ const Entry = () => {
         <button type="submit">Search</button>
       </form>
     </div>
-
+    
   );
 };
 

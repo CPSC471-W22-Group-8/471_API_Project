@@ -1,112 +1,76 @@
-import React from 'react';
-import InputField from '../InputField';
-import SubmitButton from '../SubmitButton';
-import UserStore from '../stores/UserStore';
+import React, { useState } from "react";
+import Axios from 'axios';
 
 
-class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-      buttonDisabled: false           // for if user exists in database, then disable login button to avoid dubicate user info
-    }
-  }
+//"newUserLogin"
+function LoginForm() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
-  setInputValue(property, val) {
-    val = val.trim();
+    const login = () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-    if (val.length > 12) {            // username will have max 12 characters 
-      return;
-    }
-    this.setState ({
-      [property]: val
-    })
-  }
+        var raw = JSON.stringify({
+        "password": "101010"
+        });
 
-  resetForm() {
-    this.setState({
-      username: '',
-      password: '',
-      buttonDisabled: false
-    })
-  }
+        var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
 
-  async doLogin() {
-    if (!this.state.username) {
-      return;
-    }
-    if (!this.state.password) {
-      return;
-    }
-
-    this.setState ({
-      buttonDisabled: true
-    })
+        fetch("http://localhost:5000/user/login/user1", {requestOptions})
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 
 
-    try {
-      let res = await fetch('/login', {
-        method: 'post',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify ({
-          username: this.state.username,
-          password: this.state.password
+        /* Anish's version
+        Axios.get("http://localhost:5000/user/login/user1", {
+            username: username,
+            password: password,
         })
-
-      });
-      
-      // user login form result
-      let result = await res.json();
-      if (result && result.success) {
-        UserStore.isLoggedIn = true;
-        UserStore.username = result.username; // go to './user/userPage'
-      }
-
-      else if (result && result.success === false) {
-        this.resetForm();
-        alert(result.msg);
-      }
-      
-    
+        .then((response) => {
+            console.log(response);
+        })
+        */
     }
 
-    catch(e) {
-      console.log(e);
-      this.resetForm();
-    }
-  }
 
-  render() {
     return (
-      <div className="loginForm">
-        User Login Page
-        <InputField                   // username field
-            type = 'text'
-            placeholder = 'Username'
-            value = {this.state.username ? this.state.username : ''}
-            onChange = { (val) => this.setInputValue('username', val) }
-          />
+        <div className="App">
+            <div className="login">
+                <h1>User Login</h1>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    onChange={(e) => {
+                        setUsername(e.target.value)
+                    }}
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => {
+                        setPassword(e.target.value)
+                    }} 
+                />
+                <button onClick={login}>Login</button>
 
-          <InputField                 // password field
-            type = 'password'
-            placeholder = 'Password'
-            value = {this.state.password ? this.state.password : ''}
-            onChange = { (val) => this.setInputValue('password', val) }
-          />
 
-          <SubmitButton                 
-            text = 'Login'
-            disbabled = {this.state.buttonDisabled}
-            onClick = { () => this.doLogin() }
-          />
-      </div>
-    );
-  }
+
+            </div>
+
+
+        </div>
+
+
+    )
+
+
 }
 
 export default LoginForm;

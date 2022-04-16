@@ -1,6 +1,6 @@
 /*
 run mysql on terminal:
-$ mysql
+$ mysql -u root -p
 
 change credentials to match the program:
 $ mysql> ALTER USER 'root' @'localhost' IDENTIFIED WITH mysql_native_password BY 'group8superpass';

@@ -12,8 +12,8 @@ const EditTable2 = ({
           type="text"
           required="required"
           placeholder="Enter ID"
-          name="entryId"
-          value={editFormData.entryId}
+          name="entry_Id"
+          value={editFormData.entry_Id}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -42,8 +42,8 @@ const EditTable2 = ({
           type="text"
           required="required"
           placeholder="Enter Public/Private"
-          name="public"
-          value={editFormData.public}
+          name="public_flag"
+          value={editFormData.public_flag}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -52,8 +52,8 @@ const EditTable2 = ({
           type="text"
           required="required"
           placeholder="Enter insect caught"
-          name="insectCaught"
-          value={editFormData.insectCaught}
+          name="insect_type"
+          value={editFormData.insect_type}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -72,8 +72,8 @@ const EditTable2 = ({
           type="text"
           required="required"
           placeholder="Enter fly used"
-          name="flyUsed"
-          value={editFormData.flyUsed}
+          name="fly_type"
+          value={editFormData.fly_type}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -92,8 +92,8 @@ const EditTable2 = ({
           type="text"
           required="required"
           placeholder="Enter fish caught"
-          name="fishCaught"
-          value={editFormData.fishCaught}
+          name="fish_type"
+          value={editFormData.fish_type}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -102,8 +102,8 @@ const EditTable2 = ({
           type="text"
           required="required"
           placeholder="Enter fish size"
-          name="fishSize"
-          value={editFormData.fishSize}
+          name="fish_size"
+          value={editFormData.fish_size}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -112,18 +112,8 @@ const EditTable2 = ({
           type="text"
           required="required"
           placeholder="Enter fish weight"
-          name="fishWeight"
-          value={editFormData.fishWeight}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
-        <input
-          type="url"
-          required="required"
-          placeholder="Enter picture"
-          name="picture"
-          value={editFormData.picture}
+          name="weight"
+          value={editFormData.weight}
           onChange={handleEditFormChange}
         ></input>
       </td>

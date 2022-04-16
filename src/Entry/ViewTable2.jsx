@@ -3,18 +3,17 @@ import React from "react";
 const ViewTable2 = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
-      <td>{contact.entryId}</td>
+      <td>{contact.entry_Id}</td>
       <td>{contact.location}</td>
       <td>{contact.date}</td>
-      <td>{contact.public}</td>
-      <td>{contact.insectCaught}</td>
+      <td>{contact.public_flag}</td>
+      <td>{contact.insect_type}</td>
       <td>{contact.fly}</td>
-      <td>{contact.flyUsed}</td>
+      <td>{contact.fly_type}</td>
       <td>{contact.success}</td>
-      <td>{contact.fishCaught}</td>
-      <td>{contact.fishSize}</td>
-      <td>{contact.fishWeight}</td>
-      <td>{contact.picture}</td>
+      <td>{contact.fish_type}</td>
+      <td>{contact.fish_size}</td>
+      <td>{contact.weight}</td>
       <td>
         <button
           type="button"

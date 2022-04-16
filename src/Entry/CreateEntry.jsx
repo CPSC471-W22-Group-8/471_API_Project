@@ -7,23 +7,23 @@ import data from "./sample-table-data.json";
 const CreateEntry = () => {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
-    entryId: "",
+    entry_Id: "",
     location: "",
     date: "",
-    public: "",
-    insectCaught: "",
+    public_flag: "",
+    insect_type: "",
     fly: "",
-    flyUsed: "",
+    fly_type: "",
     success: "",
-    fishCaught: "",
-    fishSize: "",
-    fishWeight: "",
-    waterVisibility: "",
-    waterFlow: "",
+    fish_type: "",
+    fish_size: "",
+    weight: "",
+    water_visibility: "",
+    water_flow: "",
     wind: "",
     sky: "",
-    temperature: "",
-    picture: ""
+    temperature: ""
+    //picture: ""
 
   });
 
@@ -43,26 +43,48 @@ const CreateEntry = () => {
   };
 
   const handleAddFormSubmit = (event) => {
-    event.preventDefault();
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+    "requestor_id": "tMYWeQDP-",
+    "location": "Lake Louise",
+    "private_flag": 1,
+    "public_flag": 0
+    });
+
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+    };
+
+    fetch("http://localhost:5000/entry", {requestOptions})
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+    
+    /*event.preventDefault();
 
     const newContact = {
       id: nanoid(),
       location: addFormData.location,
       date: addFormData.date,
-      public: addFormData.public,
-      insectCaught: addFormData.insectCaught,
+      public_flag: addFormData.public_flag,
+      insect_type: addFormData.insect_type,
       fly: addFormData.fly,
-      flyUsed: addFormData.flyUsed,
+      fly_type: addFormData.fly_type,
       success: addFormData.success,
-      fishCaught: addFormData.fishCaught,
-      fishSize: addFormData.fishSize,
-      fishWeight: addFormData.fishWeight,
-      waterFlow: addFormData.waterFlow,
-      waterVisibility: addFormData.waterVisibility,
+      fish_type: addFormData.fish_type,
+      fish_size: addFormData.fish_size,
+      fish_weight: addFormData.fish_weight,
+      water_flow: addFormData.water_flow,
+      water_visibility: addFormData.water_visibility,
       wind: addFormData.wind,
       sky: addFormData.sky,
       temperature: addFormData.temperature,
-      picture: addFormData.picture
+      //picture: addFormData.picture
       
     };
 
@@ -82,7 +104,7 @@ const CreateEntry = () => {
     .then(response => response.json())
     alert('Entry successfully created!')
     const form = document.getElementById('create');
-    form.reset();
+    form.reset();*/
   };
 
   return (
@@ -106,14 +128,14 @@ const CreateEntry = () => {
       />
       <input                                      
         type="text"
-        name="public"
+        name="public_flag"
         required="true"
         placeholder="Public or private"
         onChange={handleAddFormChange}
       />
       <input
         type="text"
-        name="insectCaught"
+        name="insect_type"
         placeholder="Enter insect caught"
         onChange={handleAddFormChange}
       />
@@ -125,7 +147,7 @@ const CreateEntry = () => {
       />
       <input
         type="text"
-        name="flyUsed"
+        name="fly_type"
         placeholder="Enter fly used"
         onChange={handleAddFormChange}
       />
@@ -137,19 +159,19 @@ const CreateEntry = () => {
       />
       <input
         type="text"
-        name="fishCaught"
+        name="fish_type"
         placeholder="Enter fish caught"
         onChange={handleAddFormChange}
       />
       <input
         type="text"
-        name="fishSize"
+        name="fish_size"
         placeholder="Enter fish size"
         onChange={handleAddFormChange}
       />
       <input
         type="text"
-        name="fishWeight"
+        name="fish_weight"
         placeholder="Enter fish weight"
         onChange={handleAddFormChange}
       />
@@ -173,20 +195,14 @@ const CreateEntry = () => {
       />
       <input
         type="text"
-        name="waterFlow"
+        name="water_flow"
         placeholder="Enter water flow"
         onChange={handleAddFormChange}
       />
       <input
         type="text"
-        name="waterVisibility"
+        name="water_visibility"
         placeholder="Enter water visibility"
-        onChange={handleAddFormChange}
-      />
-      <input
-        type="url"
-        name="picture"
-        placeholder="Enter picture"
         onChange={handleAddFormChange}
       />
       <button type="submit">Add</button>

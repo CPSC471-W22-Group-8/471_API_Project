@@ -6,8 +6,8 @@ const ViewTable = ({ contact, handleEditClick, handleDeleteClick }) => {
       <td>{contact.temperature}</td>
       <td>{contact.wind}</td>
       <td>{contact.sky}</td>
-      <td>{contact.waterVisibility}</td>
-      <td>{contact.waterFlow}</td>
+      <td>{contact.water_visibility}</td>
+      <td>{contact.water_flow}</td>
       
       <td>
         <button

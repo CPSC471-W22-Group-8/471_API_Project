@@ -42,8 +42,8 @@ const EditTable = ({
           type="text"
           required="required"
           placeholder="Enter water visibility"
-          name="waterVisibility"
-          value={editFormData.waterVisibility}
+          name="water_visibility"
+          value={editFormData.water_visibility}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -52,8 +52,8 @@ const EditTable = ({
           type="text"
           required="required"
           placeholder="Enter water flow"
-          name="waterFlow"
-          value={editFormData.waterFlow}
+          name="water_flow"
+          value={editFormData.water_flow}
           onChange={handleEditFormChange}
         ></input>
       </td>
