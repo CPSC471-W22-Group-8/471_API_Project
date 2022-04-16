@@ -15,17 +15,32 @@ function LoginForm() {
         "password": "101010"
         });
 
+        const data = {password: "101010"}
+
         var requestOptions = {
-        method: 'GET',
+        method: 'POST',
         headers: myHeaders,
         body: raw,
         redirect: 'follow'
         };
 
-        fetch("http://localhost:5000/user/login/user1", {requestOptions})
+        fetch("http://localhost:5000/user/login/user1", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
+
+        // fetch('http://localhost:5000/user/login/user1', {
+        //     method: "POST",
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // }).then((res) => {
+        //     console.log("this is res", res)
+        // }).catch((err) => {
+        //     console.log(err)
+        // })
 
 
         /* Anish's version

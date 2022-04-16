@@ -26,18 +26,33 @@ const entry = require('./routes/entry.js');
 const user = require('./routes/user.js');
 const location = require('./routes/location');
 const group = require('./routes/group')
+const bodyparser = require('body-parser')
 
-app.use(express.json());
+//app.use(express.json());
+var cors = require('cors');
+app.use(bodyparser.urlencoded({extended: true}));
+app.use(bodyparser.json())
+app.use(express.json())
+// use it before all route definitions
+app.use(cors())
+//app.use(cors({origin: '*'}));
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); 
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
+    next();}
+    )
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Origin', `*`);
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Api-Key, accept, authorization, X-Requested-With,content-type');
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
@@ -61,6 +76,7 @@ app.delete('/entry/review/:id', entry.deleteReview)
 app.put('/entry')
 
 app.get('/user/login/:username', user.checkCredentials)   // returns user_id to be used in subsequent queries
+app.post('/user/login/:username', user.checkCredentials)
 app.get('/user/:id', user.getUserInfo)
 //app.get('/user/statistics/:id', user.getStatistics)
 app.put('/user/:id', user.updateEmail)

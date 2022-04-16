@@ -9,6 +9,7 @@ const EntryRoute = {
         const b = req.body;
         // check if entry exists
 
+        console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${req.body}`);
         console.log(`q = ${JSON.stringify(q)}, id = ${JSON.stringify(p)}, b = ${JSON.stringify(b)}`);
         if (!p.username || !b.password) res.status(500).send('Invalid request.')
         else {
@@ -17,12 +18,7 @@ const EntryRoute = {
             const results = await db.query(qString).catch(err => {throw err})
             if (!results) res.status(404).send('User does not exist')
             else {
-                if (results[0].user_id) {
-                    res.status(200).send(results[0].user_id)
-                }
-                else {
-                    res.status(404).send('Invalid request.')
-                }
+                res.status(200).send(results[0].user_id)
            }
         }
     },
