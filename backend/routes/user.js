@@ -16,7 +16,7 @@ const EntryRoute = {
                 ' and `password` = ' + mysql.escape(b.password)
             const results = await db.query(qString).catch(err => {console.log(err)})
             if (!results[0]) {
-                res.status(404).send('User does not exist')
+                res.status(500).send('User does not exist')
                 return;
             }
             else {
