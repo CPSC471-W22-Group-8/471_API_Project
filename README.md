@@ -71,14 +71,14 @@ $ npm install @naterial-ui/core
 Go to the root directory of the project and then start the app like so:
 ```
 $ cd 471_API_Project            // first, go to root directory of the project...
-$ npm start                     // then, start the frontnend side of the app in the root directory
+$ npm start                     // then, start the frontnend side of the app
 ```
 After that, open http://localhost:3000 to view the application in your browser.
 
 In a second terminal, do the following
 ```
 $ cd backend                    // first, go to backend directory of the project...
-$ npm start                     // then, start the backend
+$ npm main.js                   // then, run the backend
 ```
 Now, the frontend and the backend properties of the project are running.
 
