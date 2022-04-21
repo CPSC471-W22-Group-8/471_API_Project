@@ -20,7 +20,7 @@ The following languages and tools were used to build our project:
 
 
 # Installation
-## 1. Node.js
+## Step 1. Node.js
 Download Node.js – LTS (Long Term Support) version is recommended for most users
 \
 After that, open up your terminal and check if `Node` is installed:
@@ -34,13 +34,13 @@ $ npm -v
 8.1.0
 ```
 
-## 2. Clone GitHub Repository
+## Step 2. Clone GitHub Repository
 Enter the following on the terminal of your device to download the project:
 ```
 $ git clone https://github.com/Joey-mi/social-engineering-quiz/tree/main-page
 ```
 
-## 3. JSON File
+## Step 3. JSON File
 Go to the ```package.json``` file and go to "script" to confirm that you have the following:
 ```javascript
 "scripts": {
@@ -60,7 +60,7 @@ $ npm install
 This will download all the dependencies defined in the ```package.json``` file and into a ```node_modules``` folder.\
 This folder will created in the root directory of the ```social-engineering-quiz``` folder in your local machine
 
-## 5. External Libaries
+## Step 5. Download External Libaries
 Also, apply the following external libraries in your terminal before starting the application:
 ```
 $ npm install axios
