@@ -67,17 +67,24 @@ This folder will created in the root directory of the ```social-engineering-quiz
 ## 5. External Libaries
 Also, apply the following external libraries in your terminal before starting the application:
 ```
-npm install mobx \
-npm install react-router-dom@6
+$ npm install axios
+$ npm install @naterial-ui/core
 ```
 
 ## Step 6: Running the Project
 Go to the root directory of the project and then start the app like so:
 ```
 $ cd 471_API_Project            // first, go to root directory of the project...
-$ npm start                     // then, start the app in the root directory
+$ npm start                     // then, start the frontnend side of the app in the root directory
 ```
+After that, open http://localhost:3000 to view the application in your browser.
 
+In a second terminal, do the following
+```
+$ cd backend                    // first, go to backend directory of the project...
+$ npm start                     // then, start the backend
+```
+Now, the frontend and the backend properties of the project are running.
 
 # Getting Started with Create React App
 
@@ -156,11 +163,17 @@ This project was made by Computer Science Undergraduate students from the Univer
 as a final project for the CPSC 471 Winter 2022 course. \
 Here is the list of authors:
 
-- [Ryab Smit]
-- [Gabriela Wcislo]
+- [Ryab Smit](https://github.com/rbsmit82)
+- [Gabriela Wcislo](https://github.com/gabrielawcislo) 
 - [Anish Pokhrel](https://github.com/apokhrel7)
 
 # Resources
-- https://fullstackopen.com/en/ 
-
+- https://fullstackopen.com/en/
+- https://www.w3schools.com/nodejs/nodejs_mysql.asp
+- https://www.mysqltutorial.org/mysql-nodejs/create-table/
+- https://www.youtube.com/c/PedroTechnologies/videos
+- https://www.youtube.com/channel/UC-Zcse8tC53G34Uo4kzLeAg
+- https://stackoverflow.com/questions/44946270/er-not-supported-auth-mode-mysql-server
+- https://www.educba.com/mysql-commands/
+- https://medium.com/fullstackwebdev/a-guide-to-mysql-with-node-js-fc4f6abce33b 
 
