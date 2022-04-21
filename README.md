@@ -20,10 +20,6 @@ The following languages and tools were used to build our project:
 
 
 # Installation
-### **<span style="color:red;">!!! Note !!!</span>** 
-- **This section is only necessary if you want to download the source code and run in it at localhost in your local device.**
-- **Otherwise, you can just go to the website provided here: [Social-Engineering-Quiz-Website](https://emiravc.github.io/Social-Engineering-Quiz/)**
-
 ## 1. Node.js
 Download Node.js – LTS (Long Term Support) version is recommended for most users
 \
