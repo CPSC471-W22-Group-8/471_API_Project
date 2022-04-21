@@ -78,7 +78,7 @@ After that, open http://localhost:3000 to view the application in your browser.
 In a second terminal, do the following
 ```
 $ cd backend                    // first, go to backend directory of the project...
-$ npm main.js                   // then, run the backend
+$ node main.js                  // then, run the backend
 ```
 Now, the frontend and the backend properties of the project are running.
 
