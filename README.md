@@ -9,11 +9,11 @@
 
 ## Description
 This a full stack application that allows users interested in fly fishing to store their expeditions in various ways, such as logging every fish they catch, what fly they used, the weather conditions, etc. We are hoping that fly fishers are able to use this application to catch the fish that they want.\
-This project uses `React`as its frontend, and `MySQL` as the backend.
+This project uses `React`as its frontend, and `NodeJS` with `ExpressJS` and `SQL` as the backend.
 
 # Tools and Technologies
 The following languages and tools were used to build our project:
-- ReactJS (JavaScript)
+- React
 - Node.js
 - CSS
 - MySQL
@@ -21,23 +21,20 @@ The following languages and tools were used to build our project:
 
 # Installation
 ## Step 1. Node.js
-Download Node.js – LTS (Long Term Support) version is recommended for most users
-\
-After that, open up your terminal and check if `Node` is installed:
+Install Node.js – LTS (Long Term Support) version is recommended for most users
+
+
+Upon installation, run the following:
 ```
 $ node -v
 v16.13.0
 ```
-Also, check if `npm` is installed, which comes with `Node`
-```
-$ npm -v
-8.1.0
-```
+
 
 ## Step 2. Clone GitHub Repository
 Enter the following on the terminal of your device to download the project:
 ```
-$ git clone https://github.com/Joey-mi/social-engineering-quiz/tree/main-page
+$ git clone https://github.com/gabrielawcislo/471_API_Project.git
 ```
 
 ## Step 3. JSON File
@@ -52,35 +49,22 @@ Go to the ```package.json``` file and go to "script" to confirm that you have th
 ```
 
 ## Step 4: Install the Required Dependencies
-Apply the following command in your terminal before starting the application.
+Execute the following command to download all dependencies.
 
 ```
 $ npm install
 ```
-This will download all the dependencies defined in the ```package.json``` file and into a ```node_modules``` folder.\
-This folder will created in the root directory of the ```social-engineering-quiz``` folder in your local machine
-
-## Step 5. Download External Libaries
-Also, apply the following external libraries in your terminal before starting the application:
-```
-$ npm install axios
-$ npm install @naterial-ui/core
-```
 
 ## Step 6: Running the Project
-Go to the root directory of the project and then start the app like so:
-```
-$ cd 471_API_Project            // first, go to root directory of the project...
-$ npm start                     // then, start the frontnend side of the app
-```
-After that, open http://localhost:3000 to view the application in your browser.
+Go to the root directory of the project, start the frontend and backend:
 
-In a second terminal, do the following
 ```
-$ cd backend                    // first, go to backend directory of the project...
-$ node main.js                  // then, run the backend
+$ cd 471_API_Project
+$ npm start
+$ cd backend                    
+$ node main.js                  
 ```
-Now, the frontend and the backend properties of the project are running.
+You can now open http://localhost:3000 to view the application in your browser, the backend is running at http://localhost:5000
 
 # Getting Started with Create React App
 
