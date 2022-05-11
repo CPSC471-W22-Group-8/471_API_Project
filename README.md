@@ -14,6 +14,7 @@ This project uses `React`as its frontend, and `NodeJS` with `ExpressJS` and `SQL
 # Tools and Technologies
 The following languages and tools were used to build our project:
 - React
+- Javascript
 - Node.js
 - CSS
 - MySQL
@@ -21,15 +22,19 @@ The following languages and tools were used to build our project:
 
 # Installation
 ## Step 1. Node.js
-Install Node.js – LTS (Long Term Support) version is recommended for most users
+Download Node.js – LTS (Long Term Support) version is recommended for most users
 
 
-Upon installation, run the following:
+Then, open up your terminal and check if `Node` is installed:
 ```
 $ node -v
 v16.13.0
 ```
-
+Also, check if `npm` is installed, which comes with `Node`
+```
+$ npm -v
+8.1.0
+```
 
 ## Step 2. Clone GitHub Repository
 Enter the following on the terminal of your device to download the project:
@@ -49,10 +54,17 @@ Go to the ```package.json``` file and go to "script" to confirm that you have th
 ```
 
 ## Step 4: Install the Required Dependencies
-Execute the following command to download all dependencies.
+Execute the following commands in your terminal to download all dependencies.
 
 ```
 $ npm install
+```
+
+## Step 5. Download External Libaries
+Also, execcute the following external libraries in your terminal before starting the application:
+```
+$ npm install axios
+$ npm install @naterial-ui/core
 ```
 
 ## Step 6: Running the Project
