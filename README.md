@@ -1,9 +1,18 @@
+<div id="top"></div>
+
 # CPSC 471 Winter 2022 Project: Fly Fishing
 
 ## Table of Contents
 - [Description](#description)
-- [Installation](#installation)
 - [Tools and Technologies](#tools-and-technologies)
+- [Installation](#installation)
+    1. [Node.js](#step-1-nodejs)
+    2. [Clone GitHub Repository](#step-2-clone-github-repository)
+    3. [JSON File](#step-3-json-file)
+    4. [Install the Required Dependencies](#step-4-install-the-required-dependencies)
+    5. [Download External Libaries](#step-5-download-external-libaries)
+    6. [Running the Project](#step-6-running-the-project)
+    7. [Getting Started with Create React App](#getting-started-with-create-react-app)
 - [Authors](#authors)
 - [Resources](#resources)
 
@@ -13,11 +22,11 @@ This project uses `React`as its frontend, and `NodeJS` with `ExpressJS` and `SQL
 
 # Tools and Technologies
 The following languages and tools were used to build our project:
-- React
-- Javascript
-- Node.js
-- CSS
-- MySQL
+- [React.js](https://reactjs.org/)
+- [JavaScript](https://www.javascript.com/)
+- [Node.js](https://nodejs.org/en/)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [MySQL](https://www.mysql.com/)
 
 
 # Installation
@@ -169,3 +178,4 @@ Here is the list of authors:
 - https://www.educba.com/mysql-commands/
 - https://medium.com/fullstackwebdev/a-guide-to-mysql-with-node-js-fc4f6abce33b 
 
+<p align="right">(<a href="#top">back to top</a>)</p>
